@@ -116,7 +116,6 @@ Meteor.methods({
 
 		if (isNew) {
 			groupId = Groups.insert(_.extend(group, updates));
-			Meteor.call('user.updateBadges', userId);
 		} else {
 			Groups.update(group._id, { $set: updates });
 		}
@@ -158,8 +157,6 @@ Meteor.methods({
 		// avoid the unlikely race condition where a user is not member anymore
 		// but can still add somebody else to the group.
 		Groups.update(sel, update);
-
-		if (Meteor.isServer) Meteor.call('user.updateBadges', user._id);
 	},
 
 	/* Update listing of a course or an event in a group. */

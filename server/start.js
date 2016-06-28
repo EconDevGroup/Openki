@@ -80,9 +80,6 @@ Meteor.startup(function () {
 	// Update list of organizers per course
 	Meteor.call('course.updateGroups', {}, logAsyncErrors);
 
-	// Update List of badges per user
-	Meteor.call('user.updateBadges', {}, logAsyncErrors);
-
 
 	// Keep the nextEvent entry updated
 	// On startup do a full scan to catch stragglers

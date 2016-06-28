@@ -100,35 +100,25 @@ UserLib = {
 	}
 };
 
-Users = {};
+if (Meteor.isServer) {
+	var updateGroups = function(groupId, members) {
+		Meteor.users.update( { _id: { $nin: members } }
+						, { $pull: { groups: groupId, badges: groupId } }
+						);
 
-// Update list of groups and badges
-Users.updateBadges = function(userId) {
-	untilClean(function() {
-		var user = Meteor.users.findOne(userId);
-		if (!user) return true;
+		Meteor.users.update( { _id: { $in: members } }
+						, { $addToSet: { groups: groupId, badges: groupId } }
+						);
+	}
 
-		var groups = [];
-		Groups.find({ members: user._id }).forEach(function(group) {
-			groups.push(group._id);
-		});
-
-		var badges = groups.slice();
-		badges.push(user._id);
-
-		var rawUsers = Meteor.users.rawCollection();
-		var result = Meteor.wrapAsync(rawUsers.update, rawUsers)(
-			{ _id: user._id },
-			{ $set: {
-				groups: groups,
-				badges: badges,
-			} },
-			{ fullResult: true }
-		);
-
-		return result.nModified === 0;
-	});
-};
+	// Watch all groups for membership changes to keep groups updated
+	Groups.find({}, { fields: { members: 1 } }).observeChanges(
+		{ added: function(groupId, group) { updateGroups(groupId, group.members); }
+		, changed: function(groupId, group) { updateGroups(groupId, group.members); }
+		, removed: function(groupId) { updateGroups(groupId, []); }
+		}
+	);
+}
 
 Meteor.methods({
 	delete_profile: function() {
@@ -162,12 +152,5 @@ Meteor.methods({
 				checkUpdateOne
 			);
 		}
-	},
-
-	// Recalculate the groups and badges field
-	'user.updateBadges': function(selector) {
-		Meteor.users.find(selector).forEach(function(user) {
-			Users.updateBadges(user._id);
-		});
 	},
 });
