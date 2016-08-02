@@ -1,14 +1,17 @@
 <template name="course_edit">
 	<div class="course-edit">
 		<form>
-			{{#if _id}}
-				<h2>{{mf 'course.edit.edit_course' 'Edit course'}}</h2>
+			{{#if proposeFromQuery}}
+				<h2>{{mf 'find.propose_new_course?' 'Why not propose a new course for "{TERM}"?' TERM=(courseSearch)}}</h2>
 			{{else}}
-				<h2>{{mf 'course.edit.propose' 'Propose new course'}}</h2>
-				<span class="fa fa-info"></span>
-				&nbsp;
-				{{mf 'course.propose.EventInfo' 'In case you want to publish a singular event, use the following form instead:'}}
-				<a href="/event/create">{{mf 'menue.CreateEvent'}}</a>
+				{{#if _id}}
+					<h2>{{mf 'course.edit.edit_course' 'Edit course'}}</h2>
+				{{else}}
+					<h2>{{mf 'course.edit.propose' 'Propose new course'}}</h2>
+					<span class="fa fa-info fa-fw" aria-hidden="true"></span>
+					{{mf 'course.propose.EventInfo' 'In case you want to publish a singular event, use the following form instead:'}}
+					<a href="/event/create">{{mf 'menue.CreateEvent'}}</a>
+				{{/if}}
 			{{/if}}
 			<div class="course-edit-body">
 				<div class="form-group">
@@ -24,7 +27,7 @@
 					<label>{{mf 'course.edit.description' 'Description'}}</label>
 					<div class="input-group">
 						<span class="input-group-addon">
-							<span class="glyphicon glyphicon-info-sign"></span>
+							<span class="fa fa-info fa-fw" aria-hidden="true"></span>
 						</span>
 						<div class="form-control editable-textarea"
 							id="editform_description"
@@ -71,7 +74,7 @@
 								{{mf 'course.edit.no.categories' 'No categories'}}
 							{{/unless}}
 							<button type="button" class="btn btn-edit editCategories">
-								<span class="glyphicon glyphicon-edit"></span>
+								<span class="fa fa-edit fa-fw" aria-hidden="true"></span>
 								{{mf 'course.edit.edit_categories-button' 'Edit categories'}}
 							</button>
 						{{/if}}
@@ -85,16 +88,21 @@
 					{{#unless _id}}
 						<div class="form-group-element">
 							<label>{{mf 'course.edit.region' 'Region'}}</label>
-							<select class="region_select form-control" name='region'>
-								<option value='' disabled selected class="select_placeholder">
-									{{mf 'course.edit.pls_select_region' 'Please select a region'}}
-								</option>
-								{{#each regions}}
-									<option value='{{_id}}' selected="{{#if currentRegion this}}selected{{/if}}">
-										{{name}}
+							<div class="input-group">
+								<div class="input-group-addon">
+									<span class="fa fa-dot-circle-o fa-fw" aria-hidden="true"></span>
+								</div>
+								<select class="region_select form-control" name='region'>
+									<option value='' disabled selected class="select_placeholder">
+										{{mf 'course.edit.pls_select_region' 'Please select a region'}}
 									</option>
-								{{/each}}
-							</select>
+									{{#each regions}}
+										<option value='{{_id}}' selected="{{#if currentRegion this}}selected{{/if}}">
+											{{name}}
+										</option>
+									{{/each}}
+								</select>
+							</div>
 						</div>
 					{{/unless}}
 				</div>
@@ -112,13 +120,8 @@
 				</div>
 
 				<div class="form-actions">
-					<button type="button" class="btn btn-cancel js-course-edit-cancel">
-						{{mf '_button.cancel'}}
-					</button>
-					<button type="button" class="btn btn-save js-course-edit-save">
-						<i class="fa fa-download fa-fw" aria-hidden="true"></i>
-						{{mf 'course.edit.save_btn' 'Save'}}
-					</button>
+					{{> buttonCancel event="js-course-edit-cancel"}}
+					{{> buttonSave event="js-course-edit-save"}}
 				</div>
 			</div>
 		</form>
@@ -132,7 +135,7 @@
 				name='{{role.type}}'
 				type="checkbox"
 				{{checkRole}}/>
-			<i class="{{role.icon}} fa-fw"></i>
+			<span class="{{role.icon}} fa-fw" aria-hidden="true"></span>
 			{{mf roleDescription}}
 		</label>
 	</div>

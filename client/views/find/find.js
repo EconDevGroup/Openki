@@ -7,7 +7,8 @@ function finderRoute(path) {
 
 			// Add filter options for the homepage
 			return _.extend(query, {
-				internal: false
+				internal: false,
+				region: Session.get('region')
 			});
 		},
 		onAfterAction: function() {
@@ -33,6 +34,7 @@ var updateUrl = function(event, instance) {
 
 	var filterParams = instance.filter.toParams();
 	delete filterParams.region; // HACK region is kept in the session (for bad reasons)
+	delete filterParams.internal;
 	var queryString = UrlTools.paramsToQueryString(filterParams);
 
 	var options = {};
@@ -66,7 +68,6 @@ Template.find.onCreated(function() {
 		filter
 			.clear()
 			.read(query)
-			.add('region', Session.get('region'))
 			.done();
 	});
 
@@ -100,7 +101,7 @@ Template.find.onCreated(function() {
 
 var updateCategorySearch = function(event, instance) {
 	var query = instance.$('.js-search-categories').val();
-	if (query === '') {
+	if (!query) {
 		instance.categorySearchResults.set(categories);
 		return;
 	}
@@ -123,7 +124,7 @@ var updateCategorySearch = function(event, instance) {
 };
 
 var filterPreview = function(switchOn, match) {
-	var noMatch = $('.course').not(match);
+	var noMatch = $('.course-compact').not(match);
 	if (switchOn) {
 		noMatch.addClass('filter-no-match');
 	} else {
@@ -149,15 +150,15 @@ Template.find.events({
 
 	'click .js-find-btn': function(event, instance) {
 		instance.filter.add('search', $('.js-search-input').val()).done();
-		updateURL(event, instance);
+		updateUrl(event, instance);
 	},
 
 	'mouseover .js-filter-upcoming-events': function() {
-		filterPreview(true, '.hasupcomingevents');
+		filterPreview(true, '.has-upcoming-events');
 	},
 
 	'mouseout .js-filter-upcoming-events': function() {
-		filterPreview(false, '.hasupcomingevents');
+		filterPreview(false, '.has-upcoming-events');
 	},
 
 	'mouseover .js-filter-needs-host': function() {
@@ -184,11 +185,11 @@ Template.find.events({
 		filterPreview(false, ('.'+this));
 	},
 
-	'mouseover .group': function() {
+	'mouseover .js-group-label': function() {
 		filterPreview(true, ('.'+this));
 	},
 
-	'mouseout .group': function() {
+	'mouseout .js-group-label': function() {
 		filterPreview(false, ('.'+this));
 	},
 
@@ -234,7 +235,7 @@ Template.find.events({
 		}
 	},
 
-	"click .js-all-regions-btn": function(event, template){
+	"click .js-all-regions-btn": function(event, instance){
 		Session.set('region', 'all');
 	}
 });
@@ -281,11 +282,19 @@ Template.find.helpers({
 		return groups[group];
 	},
 
+	'hasResults': function() {
+		var filterQuery = Template.instance().filter.toQuery();
+		var results = coursesFind(filterQuery, 1);
+
+		return results.count() > 0;
+	},
+
 	'results': function() {
 		var filterQuery = Template.instance().filter.toQuery();
 
 		return coursesFind(filterQuery, 36);
 	},
+
 
 	'eventResults': function() {
 		var filterQuery = Template.instance().filter.toQuery();
@@ -294,21 +303,35 @@ Template.find.helpers({
 		return eventsFind(filterQuery, 12);
 	},
 
-	'proposeNewBlurb': function() {
-		var instance = Template.instance();
-		var filter = instance.filter.toParams();
-		return !instance.showingFilters.get() && filter.search;
-	},
-
 	'ready': function() {
 		return Template.instance().coursesReady.get();
 	},
 
-	'regionSelected': function() {
-		return (Session.get('region') != 'all');
+	'filteredRegion': function() {
+		return !!Template.instance().filter.get('region');
+	},
+
+	'activeFilters': function() {
+		var activeFilters = Template.instance().filter;
+		var filters = ['upcomingEvent', 'needsHost', 'needsMentor', 'categories'];
+		for (var i = 0; i < filters.length; i++) {
+			var isActive = !!activeFilters.get(filters[i]);
+			if (isActive) return true;
+		}
+		return false;
+	},
+
+	'searchIsLimited': function() {
+		var activeFilters = Template.instance().filter;
+		var filters = ['upcomingEvent', 'needsHost', 'needsMentor', 'categories', 'region'];
+		for (var i = 0; i < filters.length; i++) {
+			var isActive = !!activeFilters.get(filters[i]);
+			if (isActive) return true;
+		}
+		return false;
 	},
 
 	'isMobile': function() {
-		return Session.get('screenSize') <= 480; // @screen-xs
+		return Session.get('viewportWidth') <= 480; // @screen-xs
 	}
 });

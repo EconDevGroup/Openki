@@ -57,6 +57,10 @@ Template.userprofile.helpers({
 		var showPrivileges = Template.instance().data.showPrivileges;
 		var showInviteGroups = this.inviteGroups.count && this.inviteGroups.count() > 0;
 		return showPrivileges || showInviteGroups;
+	},
+
+	hasInvolvedIn: function() {
+		return this.involvedIn.count() > 0;
 	}
 });
 
@@ -146,7 +150,7 @@ Template.emailBox.events({
 		var revealAddress = template.$('#sendOwnAdress').is(':checked');
 		var receiveCopy = template.$('#receiveCopy').is(':checked');
 
-		if (message.length < '8') {
+		if (message.length < '2') {
 			alert(mf('profile.mail.longertext', 'longer text please'));
 			return;
 		}

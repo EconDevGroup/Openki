@@ -80,7 +80,6 @@ Meteor.startup(function () {
 	// Update list of organizers per course
 	Meteor.call('course.updateGroups', {}, logAsyncErrors);
 
-
 	// Keep the nextEvent entry updated
 	// On startup do a full scan to catch stragglers
 	Meteor.call('updateNextEvent', {}, logAsyncErrors);
@@ -88,6 +87,8 @@ Meteor.startup(function () {
 		function() {
 			// Update nextEvent for courses where it expired
 			Meteor.call('updateNextEvent', { 'nextEvent.start': { $lt: new Date() }});
+
+			Meteor.call('updateRegionCounters', {}, logAsyncErrors);
 		},
 		60*1000 // Check every minute
 	);

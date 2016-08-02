@@ -1,77 +1,99 @@
-.calendar-navigation {
-  @include grid(12);
-  background-color: $calendar-navigation-bg;
-  box-shadow: 0 6px 2px $default-shadow;
-  font-size: 32px;
-  margin-bottom: 10px;
-  padding: 0 10px;
-  position: fixed;
-  text-align: center;
-  top: 50px;
-  width: 100%;
-	z-index: 1010;
+// *** Calendar ***
+//=================
 
-  & > .right {
-    float: right;
-  }
-  small {
-    font-size: 12px;
-  }
+// ** Navigation
+//========================================================================================
+.calendar-nav {
+	@include make-xs-column(12);
+	background-color: $calendar-nav-bg;
+	box-shadow: 0 6px 2px $default-shadow;
+	font-size: 32px;
+	margin-bottom: 10px;
+	padding: 0 10px;
+	position: fixed;
+	text-align: center;
+	top: 50px;
+	width: 100%;
+	z-index: 1010;
 }
 
-.switch-date-btn {
-	float: left;
+// ** Navigation elements
+//========================================================================================
+.calendar-nav-element {
+	display: inline-block;
+
+	&:first-child {
+		float: left;
+	}
+
+	&:last-child {
+		float: right;
+	}
+}
+
+// ** Navigation buttons
+//========================================================================================
+.calendar-nav-btn {
 	margin: 6px 3px;
+
 	&:first-child {
 		margin-left: 0;
 	}
+
 	&:last-child {
 		margin-right: 0;
 	}
 }
 
-.calendar-week {
-	text-align: center;
-	.week {
-		color: $calendar-header-text;
-		font-size: large;
-		line-height: .75;
-		margin: 7px 0 0;
-	}
-	.date {
-		color: $calendar-header-text;
-		font-size: small;
-		margin: 3px 0;
-	}
+// ** Navigation week & date
+//========================================================================================
+.calendar-nav-week {
+	font-size: large;
+	line-height: .75;
+	margin: 10px 0 0;
 }
 
+.calendar-nav-date {
+	font-size: small;
+	margin: 3px 0;
+}
+
+// ** Container
+//========================================================================================
 .calendar-container {
-  padding-top: 50px;
-	& > a:first-child {
-		margin-bottom: 15px;
-	}
+	padding-top: 50px;
 }
 
+.calendar-container > .btn:first-child {
+	margin-bottom: 15px;
+}
+
+// ** Date
+//========================================================================================
 .calendar-date {
-	background: $calendar-navigation-bg;
-	border-color: $brand-primary;
+	background: $blue-lighter;
+	border-color: $blue;
 	border-style: solid;
 	border-width: 10px 0 0;
 	box-shadow: 0 5px 5px rgba(0, 0, 0, .3);
 	font-size: large;
 	padding: 5px 7px 5px 9px;
 	text-align: center;
+
 	@media (min-width: $screen-xxs) {
 		border-width: 0 0 0 10px;
 		width: 250px;
 	}
 }
 
-.calendar-events {
+// ** Event list
+//========================================================================================
+.calendar-event-list {
 	@include clearfix;
 	margin: (($grid-gutter-width / 4) * -1) (($grid-gutter-width / 2) * -1);
 	padding: 10px 0;
 	position: relative;
+
 	@media (min-width: $screen-xsm) {
 		margin: (($grid-gutter-width / 4) * -1) (($grid-gutter-width / 8) * -1);
 	}

@@ -1,13 +1,4 @@
 
-havingRole = function(members, role) {
-	return _.reduce(members, function(ids, member) {
-		if (member.roles.indexOf(role) !== -1) {
-			ids.push(member.user);
-		}
-		return ids;
-	}, []);
-};
-
 getMember = function(members, user) {
 	if (!members) return false;
 	var member = false;
@@ -62,7 +53,7 @@ goBase = function() {
 pleaseLogin = function() {
 	if (Meteor.userId()) return false;
 	alert(mf('Please.login', 'Please login or register'));
-	if (Session.get('screenSize') <= 768) // @screen-sm
+	if (Session.get('viewportWidth') <= 768) // @screen-sm
 		$('.collapse').collapse('show');
 	setTimeout(function(){
 		$('.loginButton').dropdown('toggle');    //or $('.dropdown').addClass('open');
@@ -70,10 +61,10 @@ pleaseLogin = function() {
 	return true;
 };
 
-getWindowSize = function() {
-	var screenSize = Math.max(document.documentElement.clientWidth,
+getViewportWidth = function() {
+	var viewportWidth = Math.max(document.documentElement.clientWidth,
 														window.innerWidth || 0);
-	Session.set('screenSize', screenSize);
+	Session.set('viewportWidth', viewportWidth);
 };
 
 showServerError = function(message, err) {
