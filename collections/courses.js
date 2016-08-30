@@ -98,7 +98,8 @@ hasRole = function(members, role) {
 };
 
 /** @summary Determine whether a given user has a given role in a members list
- *  @return true if the user has this role, the string 'anon' if the logged-in user has the role incognito. False otherwise.
+  * @return 'subscribed' if the user has this role, the string 'anon' if the logged-in user has the role incognito. False otherwise.
+  * DEFECT returns 'subscribed' if you hand it an anon id that is in members.
   */
 hasRoleUser = function(members, role, userId) {
 	var has = false;
@@ -149,7 +150,9 @@ maySubscribe = function(operatorId, course, userId, role) {
 
 			// In for a penny, in for a pound
 			for (var p in candidateRoles) {
-				if (hasRoleUser(course.members, candidateRoles[p], userId)) return true;
+				// Checking the value of hasRoleUser() against 'subscribed' ensures
+				// that users in incognito roles cannot become team members
+				if (hasRoleUser(course.members, candidateRoles[p], userId) === 'subscribed') return true;
 			}
 		}
 		return false;
