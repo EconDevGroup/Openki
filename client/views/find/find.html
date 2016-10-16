@@ -11,30 +11,30 @@
 	<div class="page-component">
 		<div class="js-search-field">
 			<div class="input-group">
-				<input class="js-search-input form-control"
-					type="text"
-					id="find"
-					value="{{search}}"
-					placeholder="{{mf 'find.search_placeholder' 'Everything'}}"/>
+				<input type="text"
+				       class="js-search-input form-control"
+				       id="find"
+				       value="{{search}}"
+				       placeholder="{{mf 'find.search_placeholder' 'Everything'}}">
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-success js-find-btn">
 						{{mf 'find.search_go' 'Go!'}}
 					</button>
-						{{#if showingFilters}}
-							<button type="button" class="btn btn-cancel js-toggle-filter">
-								{{#if isMobile}}
-									<span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-								{{else}}
-									<span class="fa fa-remove fa-fw" aria-hidden="true"></span>
-									{{mf 'find.hideFilters' 'Remove all filters'}}
-								{{/if}}
-							</button>
-						{{else}}
-							<button type="button" class="btn btn-default js-toggle-filter">
+					{{#if showingFilters}}
+						<button type="button" class="btn btn-cancel js-toggle-filter">
+							{{#if isMobile}}
 								<span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
-								{{mf 'find.showFilters' 'Filter'}}
-							</button>
-						{{/if}}
+							{{else}}
+								<span class="fa fa-remove fa-fw" aria-hidden="true"></span>
+								{{mf 'find.hideFilters' 'Remove all filters'}}
+							{{/if}}
+						</button>
+					{{else}}
+						<button type="button" class="btn btn-default js-toggle-filter">
+							<span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+							{{mf 'find.showFilters' 'Filter'}}
+						</button>
+					{{/if}}
 				</span>
 			</div>
 		</div>
@@ -49,11 +49,11 @@
 				<div class="filter-course-properties">
 					<div class="btn-group-vertical" data-toggle="buttons">
 						<label class="js-toggle-property-filter js-filter-upcoming-events btn btn-default">
-							<input id="hasUpcomingEvent"
-								type="checkbox"
-								name="hasUpcomingEvent"
-								autocomplete="off"
-								{{toggleChecked 'upcomingEvent'}}/>
+							<input type="checkbox"
+							       id="hasUpcomingEvent"
+							       name="hasUpcomingEvent"
+							       autocomplete="off"
+							       {{toggleChecked 'upcomingEvent'}}>
 							<div class="eventcaption_upcoming">
 								<div class="eventcaption_upcoming_box">
 									<div class="eventcaption_upcoming_text first-line"></div>
@@ -68,11 +68,11 @@
 							{{/if}}
 						</label>
 						<label class="js-toggle-property-filter js-filter-needs-host btn btn-default">
-							<input id="needsHost"
-								autocomplete="off"
-								name="needsHost"
-								type="checkbox"
-								{{toggleChecked 'needsHost'}}/>
+							<input type="checkbox"
+							       id="needsHost"
+							       autocomplete="off"
+							       name="needsHost"
+							       {{toggleChecked 'needsHost'}}>
 							<div class="toggle-property-filter-icon">
 								<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 							</div>
@@ -84,11 +84,11 @@
 							{{/if}}
 						</label>
 						<label class="js-toggle-property-filter js-filter-needs-mentor btn btn-default">
-							<input id="needsMentor"
-								autocomplete="off"
-								name="needsMentor"
-								type="checkbox"
-								{{toggleChecked 'needsMentor'}}/>
+							<input type="checkbox"
+							       id="needsMentor"
+							       autocomplete="off"
+							       name="needsMentor"
+							       {{toggleChecked 'needsMentor'}}>
 							<div class="toggle-property-filter-icon">
 								<span class="fa fa-graduation-cap" aria-hidden="true"></span>
 							</div>
@@ -111,8 +111,9 @@
 							{{#each categories}}
 								<li>
 									{{> categoryLabel}}
-									<button type="button" class="remove-btn js-remove-category-btn glyphicon glyphicon-remove"
-										data-tooltip="{{mf 'find.filter.removeCategory' 'Remove category {CATEGORYNAME} from filter' CATEGORYNAME=categoryName}}">
+									<button type="button"
+									        class="remove-btn js-remove-category-btn glyphicon glyphicon-remove"
+									        data-tooltip="{{mf 'find.filter.removeCategory' 'Remove category {CATEGORYNAME} from filter' CATEGORYNAME=categoryName}}">
 									</button>
 								</li>
 							{{/each}}
@@ -120,12 +121,13 @@
 						{{/if}}
 					{{/unless}}
 					<div class="dropdown filter-categories-select">
-						<input class="js-search-categories form-control"
-							placeholder="{{mf 'find.searchCategories.placeholder' 'Add category'}}"
-							type="text"/>
-						<button	type="button" class="dropdown-toggle"
-							aria-expanded="false"
-							data-toggle="dropdown">
+						<input type="text"
+						       class="js-search-categories form-control"
+						       placeholder="{{mf 'find.searchCategories.placeholder' 'Add category'}}">
+						<button	type="button"
+						        class="dropdown-toggle"
+						        aria-expanded="false"
+						        data-toggle="dropdown">
 							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu filter-categories-dropdown" role="menu">
@@ -137,7 +139,7 @@
 											{{categoryNameMarked}}
 											{{#if availableSubcategories this}}
 												<small class="js-toggle-subcategories {{this}}"
-													title="{{mf 'find.showSubcategories.title' 'Show/Hide subcategories'}}">
+												       title="{{mf 'find.showSubcategories.title' 'Show/Hide subcategories'}}">
 													<span class="fa fa-angle-down" aria-hidden="true"></span>
 												</small>
 											{{/if}}
@@ -165,8 +167,9 @@
 							{{#each categories}}
 								<li>
 									<a class="js-category-label" href="#">{{categoryName}}</a>
-									<button type="button" class="remove-btn js-remove-category-btn glyphicon glyphicon-remove"
-										data-tooltip="{{mf 'find.filter.removeCategory' 'Remove category {CATEGORYNAME} from filter' CATEGORYNAME=categoryName}}">
+									<button type="button"
+									        class="remove-btn js-remove-category-btn glyphicon glyphicon-remove"
+									        data-tooltip="{{mf 'find.filter.removeCategory' 'Remove category {CATEGORYNAME} from filter' CATEGORYNAME=categoryName}}">
 									</button>
 								</li>
 							{{/each}}
@@ -227,21 +230,21 @@
 			<div class="course-list">
 				<hr>
 				<h3>
-				{{#if results.count}}
-					{{#mf KEY='find.events.aditional_results' EVENTS=eventResults.count}}
-						{EVENTS, plural,
-							one {In addition, we found this event}
-							other {In addition, we found these # events}
-						}
-					{{/mf}}
-				{{else}}
-					{{#mf KEY='find.events.results_if_no_courses' EVENTS=eventResults.count}}
-						{EVENTS, plural,
-							one {All we found is this one event}
-							other {Yet # Events have been found}
-						}
-					{{/mf}}
-				{{/if}}
+					{{#if results.count}}
+						{{#mf KEY='find.events.aditional_results' EVENTS=eventResults.count}}
+							{EVENTS, plural,
+								one {In addition, we found this event}
+								other {In addition, we found these # events}
+							}
+						{{/mf}}
+					{{else}}
+						{{#mf KEY='find.events.results_if_no_courses' EVENTS=eventResults.count}}
+							{EVENTS, plural,
+								one {All we found is this one event}
+								other {Yet # Events have been found}
+							}
+						{{/mf}}
+					{{/if}}
 				</h3><br />
 				{{> eventList dataEvents=eventResults withDate=true}}
 			</div>
