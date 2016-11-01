@@ -38,7 +38,7 @@
 // "username"     -> String
 // "emails"       -> [{address: String, verified: Boolean}]
 // "profile"      -> {name: String, locale: Lang}
-// "privileges"   -> [upload, admin]
+// "privileges"   -> [admin]
 // "lastLogin"    -> Date
 // groups         -> List of groups the user is a member of, calculated by updateBadges()
 // badges         -> union of user's id and group ids for permission checking, calculated by updateBadges()
@@ -191,6 +191,7 @@ Meteor.methods({
 		}
 	},
 
+
 	// Recalculate the groups and badges field
 	'user.updateBadges': function(selector) {
 		Meteor.users.find(selector).forEach(function(user) {
@@ -198,3 +199,15 @@ Meteor.methods({
 		});
 	},
 });
+
+if (Meteor.isServer) {
+	Meteor.methods({
+		'user.name': function(userId) {
+			this.unblock();
+			var user = Meteor.users.findOne(userId);
+			if (!user) return false;
+			var username = user.username;
+			return username;
+		}
+	});
+}

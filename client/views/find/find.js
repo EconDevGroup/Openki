@@ -56,6 +56,7 @@ Template.find.onCreated(function() {
 	var instance = this;
 
 	instance.showingFilters = new ReactiveVar(false);
+	instance.categorySearch = new ReactiveVar('');
 	instance.categorySearchResults = new ReactiveVar(categories);
 	instance.courseLimit = new ReactiveVar(36);
 	instance.coursesReady = new ReactiveVar(false); // Latch
@@ -104,6 +105,8 @@ Template.find.onCreated(function() {
 
 var updateCategorySearch = function(event, instance) {
 	var query = instance.$('.js-search-categories').val();
+	instance.categorySearch.set(query);
+
 	if (!query) {
 		instance.categorySearchResults.set(categories);
 		return;
@@ -147,44 +150,28 @@ Template.find.events({
 		updateUrl(event, instance);
 	},
 
-	'mouseover .js-filter-upcoming-events': function() {
-		courseFilterPreview(true, '.has-upcoming-events');
+	'mouseover .js-filter-upcoming-events, mouseout .js-filter-upcoming-events': function() {
+		courseFilterPreview('.has-upcoming-events', false);
 	},
 
-	'mouseout .js-filter-upcoming-events': function() {
-		courseFilterPreview(false, '.has-upcoming-events');
+	'mouseover .js-filter-needs-host, mouseout .js-filter-needs-host': function() {
+		courseFilterPreview('.needsHost', false);
 	},
 
-	'mouseover .js-filter-needs-host': function() {
-		courseFilterPreview(true, '.needsHost');
+	'mouseover .js-filter-needs-mentor, mouseout .js-filter-needs-mentor': function() {
+		courseFilterPreview('.needsMentor', false);
 	},
 
-	'mouseout .js-filter-needs-host': function() {
-		courseFilterPreview(false, '.needsHost');
+	'mouseover .js-category-selection-label, mouseout .js-category-selection-label': function() {
+		courseFilterPreview(('.'+this), false);
 	},
 
-	'mouseover .js-filter-needs-mentor': function() {
-		courseFilterPreview(true, '.needsMentor');
+	'mouseover .js-category-label, mouseout .js-category-label': function() {
+		courseFilterPreview(('.'+this), true);
 	},
 
-	'mouseout .js-filter-needs-mentor': function() {
-		courseFilterPreview(false, '.needsMentor');
-	},
-
-	'mouseover .js-category-label': function() {
-		courseFilterPreview(true, ('.'+this));
-	},
-
-	'mouseout .js-category-label': function() {
-		courseFilterPreview(false, ('.'+this));
-	},
-
-	'mouseover .js-group-label': function() {
-		courseFilterPreview(true, ('.'+this));
-	},
-
-	'mouseout .js-group-label': function() {
-		courseFilterPreview(false, ('.'+this));
+	'mouseover .js-group-label, mouseout .js-group-label': function() {
+		courseFilterPreview(('.'+this), true);
 	},
 
 	'keyup .js-search-categories': _.debounce(updateCategorySearch, 100),
@@ -200,7 +187,7 @@ Template.find.events({
 		event.stopPropagation();
 	},
 
-	'click .js-category-label': function(event, instance) {
+	'click .js-category-label, click .js-category-selection-label': function(event, instance) {
 		instance.filter.add('categories', ""+this).done();
 		instance.$('.js-search-categories').val('');
 		updateCategorySearch(event, instance);
@@ -277,6 +264,13 @@ Template.find.helpers({
 		return Template.instance().categorySearchResults.get()[mainCategory];
 	},
 
+	'categoryNameMarked': function() {
+		Session.get('locale'); // Reactive dependency
+		var search = Template.instance().categorySearch.get();
+		var name = mf('category.'+this);
+		return markedName(search, name);
+	},
+
 	'availableGroups': function(group) {
 		return groups[group];
 	},
@@ -343,6 +337,8 @@ Template.find.helpers({
 	},
 
 	'isMobile': function() {
-		return Session.get('viewportWidth') <= 480; // @screen-xs
+		var viewportWidth = Session.get('viewportWidth');
+		var screenXs = Breakpoints.screenXs;
+		return Session.get('viewportWidth') <= screenXs;
 	}
 });

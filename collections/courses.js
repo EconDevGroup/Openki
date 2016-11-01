@@ -482,7 +482,7 @@ Meteor.methods({
 		var set = {};
 
 		if (changes.roles) {
-			_.each(Roles.find().fetch(), function(roletype) {
+			_.each(Roles, function(roletype) {
 				var type = roletype.type;
 				var should_have = roletype.preset || changes.roles && changes.roles[type];
 				var have = course.roles.indexOf(type) !== -1;
@@ -556,6 +556,8 @@ Meteor.methods({
 			set.createdby = user._id;
 			set.time_created = new Date();
 			courseId = Courses.insert(set);
+
+			Meteor.call('updateNextEvent', courseId);
 		} else {
 			Courses.update({ _id: courseId }, { $set: set }, checkUpdateOne);
 		}
@@ -580,12 +582,12 @@ Meteor.methods({
 
 			var nextEvent = Events.findOne(
 				{ courseId: course._id, start: {$gt: new Date()} },
-				{ sort: {start: 1}, fields: {start: 1, _id: 1, location: 1} }
+				{ sort: {start: 1}, fields: {start: 1, _id: 1, venue: 1} }
 			);
 
 			var lastEvent = Events.findOne(
 				{ courseId: course._id, start: {$lt: new Date()} },
-				{ sort: {start: -1}, fields: {start: 1, _id: 1, location: 1} }
+				{ sort: {start: -1}, fields: {start: 1, _id: 1, venue: 1} }
 			);
 
 			Courses.update(course._id, { $set: {

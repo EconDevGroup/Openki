@@ -31,12 +31,6 @@ Template.regionSelection.rendered = function() {
 	Template.instance().$('.js-region-search').select();
 };
 
-var updateRegionSearch = function(event, instance) {
-	var search = instance.$('.js-region-search').val();
-	search = String(search).trim();
-	instance.regionSearch.set(search);
-};
-
 Template.regionSelection.helpers({
 	regions: function() {
 		var search = Template.instance().regionSearch.get();
@@ -49,19 +43,7 @@ Template.regionSelection.helpers({
 	regionNameMarked: function() {
 		var search = Template.instance().regionSearch.get();
 		var name = this.name;
-		if (search === '') return name;
-		var match = name.match(new RegExp(search, 'i'));
-
-		// To add markup we have to escape all the parts separately
-		var marked;
-		if (match) {
-			var term = match[0];
-			var parts = name.split(term);
-			marked = _.map(parts, Blaze._escape).join('<strong>'+Blaze._escape(term)+'</strong>');
-		} else {
-			marked = Blaze._escape(name);
-		}
-		return Spacebars.SafeString(marked);
+		return markedName(search, name);
 	},
 
 	region: function() {
@@ -87,11 +69,28 @@ Template.regionSelection.helpers({
 	}
 });
 
+var handleKeyup = _.debounce(function(event, instance, parentInstance) {
+	var search = instance.$('.js-region-search').val();
+	search = String(search).trim();
+
+	if (event.which === 13) {
+		if (instance.regionSearch.get() === '') {
+			parentInstance.searchingRegions.set(false);
+		} else {
+			var regionLinks = instance.$('.js-region-link');
+			var first = (regionLinks.length == 1) ? 0 : 1;
+			regionLinks.eq(first).click();
+		}
+	} else {
+		instance.regionSearch.set(search);
+	}
+}, 100);
+
 Template.regionSelection.events({
 	'click .js-region-link': function(event, instance) {
 		event.preventDefault();
 		var region_id = this._id ? this._id : 'all';
-		var changed = Session.get('region') !== region_id;
+		var changed = !Session.equals('region', region_id);
 
 		localStorage.setItem("region", region_id); // to survive page reload
 		Session.set('region', region_id);
@@ -107,27 +106,34 @@ Template.regionSelection.events({
 		instance.parentInstance().searchingRegions.set(false);
 	},
 
-	'mouseover, focus .js-region-link': function() {
-		if (this._id && (Session.get('region') == "all")) {
-			courseFilterPreview(true, '.'+this._id);
+	'mouseover, mouseout, focus, focusout .js-region-link': function() {
+		if (this._id && Session.equals('region', 'all')) {
+			courseFilterPreview('.' + this._id, false);
 		}
 	},
 
-	'mouseout, focusout .js-region-link': function() {
-		if (this._id && (Session.get('region') == "all")) {
-			courseFilterPreview(false, '.'+this._id);
-		}
+	'keyup .js-region-search': function(event, instance) {
+		var parentInstance = instance.parentInstance();
+		handleKeyup(event, instance, parentInstance);
 	},
-
-	'keyup .js-region-search': _.debounce(updateRegionSearch, 100),
 
 	'focus .js-region-search': function(event, instance) {
 		var viewportWidth = Session.get('viewportWidth');
-		var screenMd = viewportWidth >= 768 && viewportWidth <= 992;
-		if (screenMd) {
+		var isRetina = Session.get('isRetina');
+		var screenMd = viewportWidth >= Breakpoints.screenSm && viewportWidth <= Breakpoints.screenMd;
+
+		if (screenMd && !isRetina) {
 			$('.navbar-collapse > .nav:first-child > li:not(.navbar-link-active)').fadeTo("slow", 0);
 			$('.navbar-collapse > .nav:first-child > li:not(.navbar-link-active)').hide();
 		}
+
+		var gridFloatBreakpoint = viewportWidth <= Breakpoints.gridFloat;
+		if (!gridFloatBreakpoint) {
+			instance.$('.dropdown').on('show.bs.dropdown', function(e){
+				$(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+			});
+		}
+
 		instance.$('.dropdown-toggle').dropdown('toggle');
 	},
 });
@@ -136,8 +142,10 @@ Template.regionSelection.onRendered(function() {
 	var parentInstance = this.parentInstance();
 	parentInstance.$('.dropdown').on('hide.bs.dropdown', function(e) {
 		var viewportWidth = Session.get('viewportWidth');
-		var screenMd = viewportWidth >= 768 && viewportWidth <= 992;
-		if (screenMd) {
+		var isRetina = Session.get('isRetina');
+		var screenMd = viewportWidth >= Breakpoints.screenSm && viewportWidth <= Breakpoints.screenMd;
+
+		if (screenMd && !isRetina) {
 			$('.navbar-collapse > .nav:first-child > li:not(.navbar-link-active)').show();
 			$('.navbar-collapse > .nav:first-child > li:not(.navbar-link-active)').fadeTo("slow", 1);
 		}

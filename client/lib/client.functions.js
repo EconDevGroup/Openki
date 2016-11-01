@@ -16,32 +16,88 @@ getMember = function(members, user) {
  *
  * It tries hard to give a sensible response; incognito ids get represented by an incognito string, unless the user employing that incognito-ID is currently logged in.
  */
-userName = function(userId) {
-	if (!userId) return mf('noUser_placeholder', 'someone');
+userName = function() {
+	// We cache the username lookups
+	// To prevent unlimited cache-growth, after a enough lookups we
+	// build a new cache from the old
+	var cacheLimit = 1000;
+	var cache = {};
+	var previousCache = {};
+	var lookups = 0;
+	var pending = {};
 
-	if (userId.substr(0, 5)  == 'Anon_') {
-		var loggeduser = Meteor.user();
-		if (loggeduser && loggeduser.anonId && loggeduser.anonId.indexOf(userId) != -1) {
-			return  '☔ ' + loggeduser.username + ' ☔';
+	// Update the cache if users are pushed to the collection
+	Meteor.users.find().observe({
+		'added': function(user) {
+			cache[user._id] = user.username;
+		},
+		'changed': function(user) {
+			cache[user._id] = user.username;
 		}
-		return "☔ incognito";
-	}
+	});
 
-	// This seems extremely wasteful
-	// But the alternatives are more complicated by a few orders of magnitude
-	miniSubs.subscribe('user', userId);
+	return function(userId) {
+		if (!userId) return mf('noUser_placeholder', 'someone');
 
-	var user = Meteor.users.findOne({ _id: userId });
-	if (user) {
-		if (user.username) {
-			return user.username;
+		if (userId.substr(0, 5)  == 'Anon_') {
+			var loggeduser = Meteor.user();
+			if (loggeduser && loggeduser.anonId && loggeduser.anonId.indexOf(userId) != -1) {
+				return  '☔ ' + loggeduser.username + ' ☔';
+			}
+			return "☔ incognito";
+		}
+
+		// Consult cache
+		var user = cache[userId];
+		if (user === undefined) {
+			// Consult old cache
+			user = previousCache[userId];
+
+			// Carry to new cache if it was present in the old
+			if (user !== undefined) {
+				cache[userId] = user;
+			}
+		}
+
+		if (user === undefined) {
+			// Substitute until the name (or its absence) is loaded
+			user = '?!';
+
+			if (pending[userId]) {
+				pending[userId].depend();
+			} else {
+				// Cache miss, now we'll have to round-trip to the server
+				lookups += 1;
+				pending[userId] = new Tracker.Dependency();
+				pending[userId].depend();
+
+				// Cycle the cache if it's full
+				if (cacheLimit < lookups) {
+					previousCache = cache;
+					cache = {};
+					lookups = 0;
+				}
+
+				Meteor.call('user.name', userId, function(err, user) {
+					if (err) {
+						console.warn(err);
+					}
+					if (user) {
+						cache[userId] = user;
+						pending[userId].changed();
+						delete pending[userId];
+					}
+				});
+			}
+		}
+
+		if (user) {
+			return user;
 		} else {
-			return "userId: " + user._id;
+			return "userId: " + userId;
 		}
-	}
-
-	return "No_User";
-};
+	};
+}();
 
 
 /* Go to the same page removing query parameters */
@@ -53,27 +109,45 @@ goBase = function() {
 pleaseLogin = function() {
 	if (Meteor.userId()) return false;
 	alert(mf('Please.login', 'Please login or register'));
-	if (Session.get('viewportWidth') <= 768) // @screen-sm
+
+	var viewportWidth = Session.get('viewportWidth');
+	var screenSm = Breakpoints.screenSm;
+	if (viewportWidth <= screenSm) {
 		$('.collapse').collapse('show');
+	}
+
 	setTimeout(function(){
 		$('.loginButton').dropdown('toggle');    //or $('.dropdown').addClass('open');
 	},0);
 	return true;
 };
 
+markedName = function(search, name) {
+	if (search === '') return name;
+	var match = name.match(new RegExp(search, 'i'));
+
+	// To add markup we have to escape all the parts separately
+	var marked;
+	if (match) {
+		var term = match[0];
+		var parts = name.split(term);
+		marked = _.map(parts, Blaze._escape).join('<strong>'+Blaze._escape(term)+'</strong>');
+	} else {
+		marked = Blaze._escape(name);
+	}
+	return Spacebars.SafeString(marked);
+};
+
 getViewportWidth = function() {
-	var viewportWidth = Math.max(document.documentElement.clientWidth,
-														window.innerWidth || 0);
+	var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 	Session.set('viewportWidth', viewportWidth);
 };
 
-courseFilterPreview = function(switchOn, match) {
+courseFilterPreview = function(match, delayed) {
 	var noMatch = $('.course-compact').not(match);
-	if (switchOn) {
-		noMatch.addClass('filter-no-match');
-	} else {
-		noMatch.removeClass('filter-no-match');
-	}
+	var filterClass = delayed ? 'filter-no-match-delayed' : 'filter-no-match';
+	
+	noMatch.toggleClass(filterClass);
 };
 
 showServerError = function(message, err) {
@@ -102,6 +176,12 @@ groupNameHelpers = {
 	},
 };
 
+/** Use null instead of 'all' to mean "All regions".
+  * This is needed until all instances where we deal with regions are patched.
+  */
+cleanedRegion = function(region) {
+	return region === 'all' ? null : region;
+};
 
 TemplateMixins = {
 	/** Setup expand/collaps logic for a template
@@ -156,14 +236,14 @@ TemplateMixins = {
 
 /*************** HandleBars Helpers ***********************/
 
-Handlebars.registerHelper ("siteName", function() {
+Template.registerHelper ("siteName", function() {
 	if (Meteor.settings.public && Meteor.settings.public.siteName) {
 		return Meteor.settings.public.siteName;
 	}
 	return "Hmmm";
 });
 
-Handlebars.registerHelper ("siteStage", function() {
+Template.registerHelper ("siteStage", function() {
 	if (Meteor.settings.public && Meteor.settings.public.siteStage) {
 		return Meteor.settings.public.siteStage;
 	}
@@ -171,38 +251,37 @@ Handlebars.registerHelper ("siteStage", function() {
 });
 
 
-Handlebars.registerHelper ("categoryName", function(cat) {
-	cat = cat || this;
+Template.registerHelper ("categoryName", function() {
 	Session.get('locale'); // Reactive dependency
 	return mf('category.'+this);
 });
 
-Handlebars.registerHelper ("privacyEnabled", function(){
+Template.registerHelper ("privacyEnabled", function(){
 	var user = Meteor.user();
 	if(!user) return false;
 	return user.privacy;
 });
 
 
-Handlebars.registerHelper("log", function(context) {
+Template.registerHelper("log", function(context) {
 	if (window.console) console.log(arguments.length > 0 ? context : this);
 });
 
 
-Handlebars.registerHelper('username', userName);
+Template.registerHelper('username', userName);
 
 
-Handlebars.registerHelper('currentLocale', function() {
+Template.registerHelper('currentLocale', function() {
 	return Session.get('locale');
 });
 
 
-Handlebars.registerHelper('dateformat', function(date) {
+Template.registerHelper('dateformat', function(date) {
 	Session.get('timeLocale');
 	if (date) return moment(date).format('L');
 });
 
-Handlebars.registerHelper('dateLong', function(date) {
+Template.registerHelper('dateLong', function(date) {
 	if (date) {
 		Session.get('timeLocale');
 		date = moment(moment(date).toDate());
@@ -210,7 +289,7 @@ Handlebars.registerHelper('dateLong', function(date) {
 	}
 });
 
-Handlebars.registerHelper('weekNr', function(date) {
+Template.registerHelper('weekNr', function(date) {
 	if (date) {
 		Session.get('timeLocale');
 		date = moment(moment(date).toDate());
@@ -219,64 +298,64 @@ Handlebars.registerHelper('weekNr', function(date) {
 });
 
 
-Handlebars.registerHelper('dateformat_calendar', function(date) {
+Template.registerHelper('dateformat_calendar', function(date) {
 	Session.get('timeLocale'); // it depends
 	if (date) return moment(date).calendar();
 });
 
-Handlebars.registerHelper('dateformat_withday', function(date) {
+Template.registerHelper('dateformat_withday', function(date) {
 	Session.get('timeLocale'); // it depends
 	if (date) return moment(date).format('ddd D.MM.YYYY');
 });
 
-Handlebars.registerHelper('weekday', function(date) {
+Template.registerHelper('weekday', function(date) {
 	Session.get('timeLocale'); // it depends
 	if (date) return moment(date).format('dddd');
 });
 
-Handlebars.registerHelper('weekday_short', function(date) {
+Template.registerHelper('weekday_short', function(date) {
 	Session.get('timeLocale'); // it depends
 	if (date) return moment(date).format('ddd');
 });
 
-Handlebars.registerHelper('dateformat_fromnow', function(date) {
+Template.registerHelper('dateformat_fromnow', function(date) {
 	Session.get('fineTime');
 	Session.get('timeLocale'); // it depends
 	if (date) return moment(date).fromNow();
 });
 
-Handlebars.registerHelper('fullDate', function(date) {
+Template.registerHelper('fullDate', function(date) {
 	Session.get('timeLocale'); // it depends
 	if (date) return moment(date).format('ddd D.MM.YYYY HH:mm');
 });
 
 
-Handlebars.registerHelper('dateformat_mini', function(date) {
+Template.registerHelper('dateformat_mini', function(date) {
 	if (date) return moment(date).format('D.M.');
 });
 
-Handlebars.registerHelper('dateformat_mini_fullmonth', function(date) {
+Template.registerHelper('dateformat_mini_fullmonth', function(date) {
 	Session.get('timeLocale'); // it depends
 	if (date) return moment(date).format('D. MMMM');
 });
 
-Handlebars.registerHelper('timeformat', function(date) {
+Template.registerHelper('timeformat', function(date) {
 	Session.get('timeLocale');
 	if (date) return moment(date).format('LT');
 });
 
-Handlebars.registerHelper('fromNow', function(date) {
+Template.registerHelper('fromNow', function(date) {
 	Session.get('fineTime');
 	Session.get('timeLocale'); // it depends
 	if (date) return moment(date).fromNow();
 });
 
 
-Handlebars.registerHelper('isNull', function(val) {
+Template.registerHelper('isNull', function(val) {
 	return val === null;
 });
 
-Handlebars.registerHelper('courseURL', function(_id) {
+Template.registerHelper('courseURL', function(_id) {
 	var course=Courses.findOne(_id);
 	var name = getSlug(course.name);
 	return '/course/' + _id + '/' + name;
@@ -284,16 +363,31 @@ Handlebars.registerHelper('courseURL', function(_id) {
 
 
 // Strip HTML markup
-Handlebars.registerHelper('plain', function(html) {
+Template.registerHelper('plain', function(html) {
 	var div = document.createElement('div');
 	div.innerHTML = html;
 	return div.textContent || div.innerText || '';
 });
 
-Handlebars.registerHelper ("locationName", function(loc) {
-	var location = Locations.findOne(loc);
-	if (!location) return 'LocationNotFound';
-	return location.name;
+// Take a plain excerpt from HTML text
+// If the output is truncated to len, an ellipsis is added
+Template.registerHelper('plainExcerpt', function(html, len) {
+	html = html || '';
+	var div = document.createElement('div');
+	div.innerHTML = html;
+	var s = div.textContent || div.innerText || '';
+
+	// Condense runs of whitespace so counting characters won't be too far off
+	s = s.replace(/\s+/, " ");
+
+	if (s.length <= len) return s;
+	return s.substring(0, len)+'…';
+});
+
+Template.registerHelper ("venueName", function(venueId) {
+	var venue = Venues.findOne(venueId);
+	if (!venue) return '';
+	return venue.name;
 });
 
 // http://stackoverflow.com/questions/27949407/how-to-get-the-parent-template-instance-of-the-current-template
@@ -316,7 +410,7 @@ Blaze.TemplateInstance.prototype.parentInstance = function (levels) {
     }
 };
 
-Handlebars.registerHelper('groupShort', function(groupId) {
+Template.registerHelper('groupShort', function(groupId) {
 	var instance = Template.instance();
 	instance.subscribe('group', groupId);
 
@@ -325,7 +419,7 @@ Handlebars.registerHelper('groupShort', function(groupId) {
 	return "";
 });
 
-Handlebars.registerHelper('groupLogo', function(groupId) {
+Template.registerHelper('groupLogo', function(groupId) {
 	var instance = Template.instance();
 	instance.subscribe('group', groupId);
 

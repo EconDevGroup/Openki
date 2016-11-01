@@ -1,23 +1,5 @@
 <template name="eventPage">
 	<div class="container-sm">
-		<div class="page-component">
-			{{#if course}}
-				{{#if referredByCourse}}
-					<a href="{{pathFor 'showCourse' _id=course._id}}">
-						<span class="fa fa-arrow-left fa-fw" aria-hidden="true"></span>
-						{{mf 'course.event.detail.back' 'Back to course'}} "{{course.name}}"
-					</a>
-				{{else}}
-					{{> backToLink}}
-					<a href="{{pathFor 'showCourse' _id=course._id}}">
-						<span class="fa fa-rocket fa-fw" aria-hidden="true"></span>
-						{{mf 'course.event.detail.goToCourse' 'Go to course'}} "{{course.name}}"
-					</a>
-				{{/if}}
-			{{else}}
-				{{> backToLink}}
-			{{/if}}
-		</div>
 		{{> event}}
 	</div>
 </template>
@@ -30,8 +12,30 @@
 	{{#if editing}}
 		{{> eventEdit}}
 	{{else}}
+		{{> eventBackToLink}}
 		{{> eventDisplay}}
 	{{/if}}
+</template>
+
+<template name="eventBackToLink">
+	<div class="page-component">
+		{{#if course}}
+			{{#if referredByCourse}}
+				<a href="{{pathFor 'showCourse' _id=course._id}}">
+					<span class="fa fa-arrow-left fa-fw" aria-hidden="true"></span>
+					{{mf 'course.event.detail.back' 'Back to course'}} "{{course.name}}"
+				</a>
+			{{else}}
+				{{> backToLink}}
+				<a href="{{pathFor 'showCourse' _id=course._id}}">
+					<span class="fa fa-rocket fa-fw" aria-hidden="true"></span>
+					{{mf 'course.event.detail.goToCourse' 'Go to course'}} "{{course.name}}"
+				</a>
+			{{/if}}
+		{{else}}
+			{{> backToLink}}
+		{{/if}}
+	</div>
 </template>
 
 <template name="eventDisplay">
@@ -50,17 +54,17 @@
 			<div class="details-content">
 				<h3>{{this.title}}</h3>
 				<div class="location">
-					{{> locationLink}}
-					{{#if location.address}}
+					{{> venueLink}}
+					{{#if venue.address}}
 						<span class="fa fa-map-marker fa-fw" aria-hidden="true"></span>
-						{{location.address}}
+						{{venue.address}}
 					{{/if}}
 				</div>
 
 				{{> eventGroupList}}
 
 				<p>
-					{{#if haveLocation}}
+					{{#if hasVenue}}
 						<div class="details-map">
 							{{>map markers=eventMarkers}}
 						</div>
@@ -69,16 +73,6 @@
 				</p>
 			</div>
 		</div>
-		{{#if files}}
-			<div class="details-addition">
-				<h4>Related Files:</h4>
-				<ul class="event-files-list">
-					{{#each files}}
-						{{> eventAttachments}}
-					{{/each}}
-				</ul>
-			</div>
-		{{/if}}
 		{{#if replicating}}
 			{{>eventReplication}}
 		{{/if}}
@@ -87,12 +81,12 @@
 				{{> buttonDelete event="js-event-delete"}}
 				{{> buttonEdit event="js-event-edit"}}
 				{{#if replicating}}
-					<button type="button" class="-closeReplication btn btn-cancel">
+					<button type="button" class="btn btn-cancel js-toggle-replication">
 						<span class="fa fa-minus fa-fw" aria-hidden="true"></span>
-						{{mf 'course.details.repl_menu_btn'}}
+						{{mf 'course.details.hideReplicationMenu' 'Cancel replication'}}
 					</button>
 				{{else}}
-					<button type="button" class="-openReplication btn btn-add">
+					<button type="button" class="btn btn-add js-toggle-replication">
 						<span class="fa fa-plus fa-fw" aria-hidden="true"></span>
 						{{mf 'course.details.repl_menu_btn' 'Repeat'}}
 					</button>
@@ -110,14 +104,6 @@
 		{{> report}}
 	</div>
 </template>
-
-<template name="eventAttachments">
-	<li>
-		<span class="fa fa-file fa-fw" aria-hidden="true"></span>
-		<a href="{{file}}" target="_blank">{{filename}}</a>
-	</li>
-</template>
-
 
 
 <!-- COPYPASTA WARNING

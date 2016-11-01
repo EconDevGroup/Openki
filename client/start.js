@@ -2,10 +2,14 @@
 
 ////////////// db-subscriptions:
 
-Meteor.subscribe('roles');
 Meteor.subscribe('currentUser');
-Meteor.subscribe('files');
 Meteor.subscribe('version');
+
+// Always load english translation
+// For dynamically constructed translation strings there is no default
+// translation and meteor would show the translation key if there is no
+// translation in the current locale
+mfPkg.loadLangs('en');
 
 
 // close any verification dialogs still open
@@ -70,12 +74,12 @@ Meteor.startup(function() {
 		if (!lang) return false;
 
 		var locale = false;
-		if (lgs[lang]) {
+		if (Languages[lang]) {
 			locale = lang;
 		}
 		if (!locale && lang.length > 2) {
 			var short = lang.substring(0, 2);
-			if (lgs[short]) {
+			if (Languages[short]) {
 				locale = short;
 			}
 		}

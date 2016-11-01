@@ -132,9 +132,9 @@
 							{{#if availableCategories}}
 								{{#each availableCategories}}
 									<li class="{{this}}">
-										<a class="js-category-label {{#if availableSubcategories this}}drodown-item-main{{/if}}"
+										<a class="js-category-selection-label {{#if availableSubcategories this}}drodown-item-main{{/if}}"
 											href="#">
-											{{categoryName}}
+											{{categoryNameMarked}}
 											{{#if availableSubcategories this}}
 												<small class="js-toggle-subcategories {{this}}"
 													title="{{mf 'find.showSubcategories.title' 'Show/Hide subcategories'}}">
@@ -145,7 +145,9 @@
 									</li>
 									{{#each availableSubcategories this}}
 										<li class="js-sub-category {{..}}">
-											<a class="js-category-label" href="#">{{categoryName}}</a>
+											<a class="js-category-selection-label" href="#">
+												{{categoryNameMarked}}
+											</a>
 										</li>
 									{{/each}}
 								{{/each}}
@@ -247,7 +249,7 @@
 	{{/if}}
 	<div class="page-component">
 		<div class="container-sm">
-			{{> course_edit newCourse}}
+			{{> courseEdit newCourse}}
 		</div>
 	</div>
 </template>
