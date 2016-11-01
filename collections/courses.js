@@ -103,13 +103,16 @@ hasRole = function(members, role) {
   */
 hasRoleUser = function(members, role, userId) {
 	var has = false;
-	var loggeduser = Meteor.user();
+	var loggedUser = Meteor.user();
 
-	members.forEach(function(member) {
-		if (loggeduser && loggeduser._id == userId && loggeduser.anonId && loggeduser.anonId.indexOf(member.user) != -1) {
+	var haveAnon = loggedUser && loggedUser._id == userId && loggedUser.anonId;
+	if (haveAnon) {
+		members.forEach(function(member) {
+			if (loggedUser.anonId.indexOf(member.user) != -1) {
 			if (member.roles.indexOf(role) !== -1) has = 'anon';
-		}
-	});
+			}
+		});
+	}
 
 	members.forEach(function(member) {
 		if (member.user == userId) {
