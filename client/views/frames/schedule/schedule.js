@@ -185,7 +185,7 @@ Template.frameSchedule.onCreated(function() {
 					// output hopefully looks more stable through the weekdays
 					// with events occurring every weekday listed first in the
 					// each slot
-					return [event.start.getHours(), event.start.getMinutes(), -repetitionCount[event.repKey]];
+					return [event.start.getHours(), event.start.getMinutes(), -repetitionCount[event.repKey], event.title];
 				});
 			});
 		});
