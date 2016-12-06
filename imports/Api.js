@@ -5,7 +5,7 @@ Router.map(function () {
 		where: 'server',
 		action: function () {
 			var groupQuery = Filtering(GroupPredicates).read(this.params.query).done().toQuery();
-			var groups = Groups.find(groupQuery).fetch();
+			var groups = GroupLib.find(groupQuery).fetch();
 
 			_.each(groups, function(group) {
 				group.openkiLink = Router.url('groupDetails', group);
