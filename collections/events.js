@@ -1,3 +1,5 @@
+import '/imports/Notification.js';
+
 // ======== DB-Model: ========
 // _id             -> ID
 // region          -> ID_region
@@ -22,6 +24,9 @@
 
 // groups          -> list of group._id that promote this event
 // groupOrganizers -> list of group._id that are allowed to edit the course
+
+// replicaOf       -> ID of the replication parent, only cloned events have this
+
 
 /** Calculated fields
   *
@@ -173,7 +178,7 @@ Events.updateGroups = function(eventId) {
 
 
 Meteor.methods({
-	saveEvent: function(eventId, changes, updateReplicas) {
+	saveEvent: function(eventId, changes, updateReplicas, sendNotifications) {
 		check(eventId, String);
 
 		var expectedFields = {
@@ -283,7 +288,12 @@ Meteor.methods({
 			}
 		}
 
+		if (sendNotifications) {
+			Notification.Event.record(eventId, isNew);
+		}
+
 		if (Meteor.isServer) {
+
 			Meteor.call('updateEventVenue', eventId, logAsyncErrors);
 			Meteor.call('event.updateGroups', eventId, logAsyncErrors);
 			Meteor.call('updateRegionCounters', event.region, logAsyncErrors);

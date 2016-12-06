@@ -95,6 +95,20 @@ Template.eventEdit.helpers({
 	isInternal: function() {
 		return this.internal ? "checked" : null;
 	},
+
+	uploaded: function() {
+		return Template.instance().uploaded.get();
+	},
+
+	course: function() {
+		var courseId = this.courseId;
+		if (courseId) {
+			// Very bad?
+			Template.instance().subscribe('courseDetails', courseId);
+
+			return Courses.findOne({_id: courseId});
+		}
+	}
 });
 
 var readDateTime = function(dateStr, timeStr) {
@@ -243,8 +257,9 @@ Template.eventEdit.events({
 		}
 
 		var updateReplicas = instance.$("input[name='updateReplicas']").is(':checked');
+		var sendNotification = instance.$(".js-check-notify").is(':checked');
 
-		Meteor.call('saveEvent', eventId, editevent, updateReplicas, function(error, eventId) {
+		Meteor.call('saveEvent', eventId, editevent, updateReplicas, sendNotification, function(error, eventId) {
 			if (error) {
 				showServerError('Saving the event went wrong', error);
 			} else {
