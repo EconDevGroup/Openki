@@ -232,17 +232,3 @@ Router.route('/profile/unsubscribe/:token', function() {
 	where: 'server'
 });
 
-
-Router.map(function () {
-	this.route('json0Venues', {
-		path: '/json/0/venues',
-		where: 'server',
-		action: function () {
-			var venueQuery = Filtering(VenuePredicates).read(this.params.query).done().toQuery();
-			var venues = Venues.find(venueQuery).fetch();
-
-			this.response.setHeader('Content-Type', 'application/json');
-			this.response.end(JSON.stringify(venues));
-		}
-	});
-});
