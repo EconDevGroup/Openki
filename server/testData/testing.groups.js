@@ -50,9 +50,11 @@ testGroups = [{
 	'name':             'Nachhaltigkeitswoche',
 	'short':            'NHW',
 	'claim':            '',
-	'description':      'Über 60 Studierende von fünf Zürcher Hochschulen stecken ehrenamtlich ihr Herzblut in die Organisation dieses Grossprojekts. Wir sind stolz einen Beitrag zu einer zukunftsfähigen Gesellschaft zu leisten.',
-	'members':          ['Vera','Nicolle']
-
+	'description':      'Die Nachhaltigkeitswoche (NHW) ist ein Projekt von Studierenden von fünf Zürcher Hochschulen: ETHZ, UZH, ZHdK, ZHAW und PHZH. Die dritte Woche des Frühlingssemesters ist an den Hochschulen ganz der Nachhaltigkeit gewidmet. Im Rahmen von mehrere Veranstaltungen soll das Thema Nachhaltigkeit (ökologisch, sozial und ökonomisch) breit diskutiert und die Studierendenschaft gebildet und sensibilisiert werden. Alle Veranstaltungen sind öffentlich und kostenlos.',
+	'members':          ['Vera','Nicolle'],
+	'web-link':         'http://nachhaltigkeitswoche.ch',
+	'logo':             'http://nachhaltigkeitswoche.ch/site/templates/images/logo.png',
+	'tags':             ['TransitionZH']
 },{
 	'name':             'Do It Yourself Züri',
 	'short':            'DIY-ZH',
@@ -94,7 +96,8 @@ testGroups = [{
 	'short':            'Myzelia',
 	'claim':            'selbstorganisation in der Bildung',
 	'description':      '',
-	'members':          ['sbalmer', 'Urban', 'lu40']
+	'members':          ['sbalmer', 'Urban', 'lu40'],
+	'tags':             ['TransitionZH']
 },{
 	'name':             'Studiengang Kommunikationsguerilla',
 	'short':            'SKG',
@@ -106,7 +109,8 @@ testGroups = [{
 	'short':            'LDF',
 	'claim':            'In 365 Tagen zu einem nachhaltigeren Leben',
 	'description':      '<p>Das Projekt “Lern Dich Frei!” ist als Initiative von Student/innen der Universität Zürich entstanden und bietet während gut eines Jahres Raum für ein breites Spektrum an Themen und öffentlichen Veranstaltungen rund um eine zukunftsfähige Welt.</p><p>Das Ziel des Projektes ist es, nicht nur Wissen zu vermitteln, sondern auch eine Plattform für Expert/innen zu bieten, Netzwerke zu bilden und anregende und umsetzbare Ideen für den Alltag zu liefern.</p><p>Während eines Jahreszyklus’ finden wöchentlich öffentliche Events zu unterschiedlichen Themen statt. Die Teilnahme ist in der Regel kostenlos. Die Agenda ist <a href="http://lerndichfrei.ch/Calender.html">hier</a> zu finden - nutze diese Gelegenheit und nimm an einer unserer Veranstaltungen teil!</p><p>Wichtig: es gibt noch viel Raum für weitere Events, und Deine Ideen sind äusserst willkommen. Mehr zu Möglichkeiten, dich einzubringen, erfährst du <a href="http://lerndichfrei.ch/MakeEvent.html">hier</a>.</p>',
-	'members':          ['greg']
+	'members':          ['greg'],
+	'tags':             ['TransitionZH', 'education', 'DIY']
 },{
 	'name':             'Kurzfristig Sport',
 	'short':            'K-S',
@@ -118,5 +122,151 @@ testGroups = [{
 	'short':            '',
 	'claim':            '',
 	'description':      '',
-	'members':          ['']
+	'members':          [''],
+	'tags':             ['TransitionZH']
 }];
+
+
+
+
+
+Organisations = [{                           //partners of transition network
+	'name':             'Bio für Jede',
+	'claim':            '',
+	'description':      'Der Verein möchte seinen Teil dazu beitragen, eine positive Neuausrichtung zu bewirken. Durch Vertrauen in uns selbst, in das was wir praktisch umsetzten, denken, sagen und fühlen, möchten wir die Verantwortung übernehmen und die Möglichkeit ergreifen, dieses Vertrauen weiter zu geben. Wir arbeiten mit den Lebensmittel, welche bereits vorhanden sind, mit dem Wissen, welches gegenwärtig ist. Wir möchten, dass es jedem möglich ist, sich von biologischen Lebensmitteln zu ernähren. Wir wollen gegen die Wegwerf-Gesellschaft angehen und unabhängig vorhandenes Wissen weitergeben. Wir wollen weiter kommen an den Punkt, an dem wir jetzt stehen.',
+	'web-link':          'https://biofürjede.ch/',
+	'logo':              'https://biofürjede.ch/++theme++theme/images/icon-256.png',
+	'loc':               {                             //prepare for multiple locations?
+		'type':'Point',
+		'coordinates':       [8.53252, 47.38775],
+	},
+	'tags':              ['TransitionZH', 'food', 'DIY']
+},{
+	'name':             'project 21',
+	'claim':            'sustainability – your responsibility.',
+	'description':      '[project 21] ist ein Verein für Studierende in Zürich, die sich kritisch und tiefschürfend mit Fragen rund um nachhaltige Entwicklung auseinandersetzen. Der Verein [project 21] dient dabei zugleich als administrative Plattform für innovative studentische Projekte im Bereich Nachhaltigkeit sowie als Netzwerk zum Austausch unter engagierten Studierenden.',
+	'web-link':         'http://www.project21.ch/',
+	'logo':             'http://www.project21.ch/templates/p21-joomla25/images/p21-logo.svg',
+	'loc':              {
+		'type':'Point',
+		'coordinates':      [8.54896, 47.37836]
+	},
+	'tags':              ['TransitionZH', 'education', 'environment', 'sustainability']
+},{
+	'name':             'NeNa1',
+	'claim':            'Bau- & Wohngenossenschaft',
+	'description':      'NeNa1 ist eine Bau- und Wohngenossenschaft, die in Zürich eine Neustart-Nachbarschaft realisieren will, d.h. eine Siedlung mit ca. 500 Bewohnenden, die eine Reihe Ideen aus den Bereichen ökologische Nachhaltigkeit und alternatives Zusammenleben verbindet.',
+	'web-link':         'https://nena1.ch',
+	'logo':             'https://nena1.ch/sites/default/files/NENA1_Logo_4.gif',
+	'loc':              {
+		'type':'Point',
+		'coordinates':      [8.49627, 47.37812]
+	},
+	'tags':              ['TransitionZH', 'living', '']
+},{
+	'name':             'sinndrin',
+	'claim':            'Die sinndrin Genossenschaft ist ein auf Nachhaltigkeit ausgerichtetes Team von Ingenieuren',
+	'description':      'Unsere Vision ist es sinnstiftende Projekte umzusetzen, die der Gesellschaft von Nutzen sind. Dabei sind wir offen für alle Projekte die unseren Grundsätzen folgen. Die stetige Weiterentwicklung der Genossenschaft und ihrer Mitarbeitenden ist uns wichtig, weshalb wir auch an der Bearbeitung neuer Themenbereiche interessiert sind. Neben der Realisierung von Projekten bieten wir eine Plattform für Menschen die nach den Grundsätzen der Genossenschaft Aufträge und Projekte verwirklichen wollen.',
+	'web-link':         'http://www.sinndrin.ch',
+	'logo':             'http://www.sinndrin.ch/images/design/logo.png',
+	'loc':              {
+		'type':'Point',
+		'coordinates':      [8.57027, 47.42484]
+	},
+	'tags':              ['TransitionZH', 'technology']
+},{
+	'name':             '5 im 5i',
+	'claim':            '',
+	'description':      'Wem gehört der Kreis 5 von Zürich? Und wer gestaltet dieses innerstädtische Quartier, das direkt hinter dem Hauptbahnhof liegt? Aus solchen Fragen ist im Frühjahr 2015 das Forum 5im5i entstanden. Wir erarbeiten und diskutieren Ideen zur Quartierbelebung. Das Forum trifft sich monatlich, ist basisdemokratisch organisiert und versteht sich als politisch und religiös neutral. Mitmachen können auch Leute, die selber nicht im Kreis 5 wohnen oder arbeiten. Uns alle verbindet ein Interesse an Stadtentwicklung mit Fokus auf den Kreis 5.',
+	'web-link':         'http://www.5im5i.ch',
+	'logo':             'http://www.5im5i.ch/pub/files/theme_files_q/logo/logo.jpg',
+	'loc':              {
+		'type':'Point',
+		'coordinates':      [8.52672, 47.38511]
+	},
+	'tags':              ['TransitionZH', 'gentrification', 'living']
+},{
+	'name':             'Kompotoi',
+	'claim':            'Mit uns wird jede Sitzung zum Erlebnis!',
+	'description':      'Der Verein Kompotoi fördert und vermittelt Fachwissen rund um Komposttoiletten. Er hat sich zum Ziel gesetzt, natürliche Kreisläufe zu schliessen und den nachhaltigen Umgang mit unseren Ressourcen zu fördern. Im speziellen möchte der Verein mit seinen Tätigkeiten den Aufbau gesunder Böden und den Schutz von aquatischen Lebensräumen fördern. Kompotoi setzt die Komposttoilette als Wissensvermittlerin ins Rampenlicht. Der Verein fördert die Forschung an innovativen Verfahren zur Wissenserweiterung im Umgang mit Restmaterial aus den Toiletten. Der Verein ist bestrebt, aus seinen Tätigkeiten nachhaltige und wirtschaftliche Lösungsansätze für eine zukunftsfähige Gesellschaft hervorzubringen. ',
+	'web-link':         'http://www.kompotoi.ch/',
+	'logo':             'https://image.jimcdn.com/app/cms/image/transf/dimension=394x10000:format=png/path/s7f148a1e9bc7bea4/image/id7ac095658eb52e6/version/1477056573/image.png',
+	'loc':              {
+		'type':'Point',
+		'coordinates':      [8.51823, 47.38549]
+	},
+	'tags':              ['TransitionZH', 'waste']
+},{
+	'name':             'Openki',
+	'claim':            'What do you want to learn?',
+	'description':      'Openki ist eine interaktive Web-Plattform in Entwicklung mit dem Ziel, einen hürdenfreien Zugang zu Bildung für alle zu ermöglichen. Die Web-Plattform ist ein einfaches Open-Source Werkzeug für den lokalen, selbstorganisierten Wissensaustausch: Als Basis zur Vermittlung von unkommerziellen Bildungsangeboten, als Schnittstelle zwischen Menschen, die sich für ähnliche Themen begeistern und als Instrument, welches die Organisation von “peer-to-peer”-Wissensaustausch vereinfacht. Die Plattform ermöglicht sämtliche Prozesse von der Themenfindung über die Organisation und Durchführung von Kursen bis zur Dokumentation des Lernmaterials.',
+	'web-link':         'http://about.openki.net',
+	'logo':             'http://about.openki.net/wp-content/uploads/2016/11/OpenkiLogo_groesser_1024_siebdruck_femal_2_cleaned.png',
+	'loc':              {
+		'type':'Point',
+		'coordinates':      []
+	},
+	'tags':              ['TransitionZH', 'education']
+},{
+	'name':             'revamp-it',
+	'short':            'revamp',
+	'claim':            'hardware, menschen, knowhow',
+	'description':      'Revamp-it ist ein im Handelsregister eingetragener selbsttragender gemeinnütziger Verein. Wir nehmen gebrauchte Hardware entgegen und machen sie wieder einsatzfähig.',
+	'web-link':         'http://revamp-it.ch/',
+	'logo':             'http://revamp-it.ch/images/stories/logo.gif',
+	'loc':              {
+		'type':'Point',
+		'coordinates':      [8.52478, 47.39303]
+	},
+	'tags':              ['TransitionZH', 'recycling']
+},{
+	'name':             'DANACH',
+	'claim':            'Gemeinsam einen zukunftsfähigen Lebensstil gestalten',
+	'description':      'Als Denklabor wollen wir die vielfältigen Möglichkeiten des neuen, kollaborativen Wirtschaftens (Sharing, Prosuming, Kooperationen, etc.) kennen und aufzeigen. Dieser Wirtschaftsform wollen wir die politische Relevanz verschaffen damit deren Potenziale für die nachhaltige Entwicklung ausgeschöpft werden. Im Fokus steht dabei immer die Selbstermächtigung des Menschen.',
+	'web-link':         'https://danach.info',
+	'logo':             'https://danach.jetzt/dateien/bilder/CI/DANACH_Logo.png',
+	'loc':              {
+		'type':'Point',
+		'coordinates':      []
+	},
+	'tags':              ['TransitionZH', 'economy', 'degrowth']
+},{
+	'name':             'jenseits',
+	'claim':            '',
+	'description':      'jenseits IM VIADUKT ist ein Ort für junge Erwachsene (18–30J.) unabhängig von Nationalität und Religionszugehörigkeit. Hier werden Ideen verwirklicht, Spuren verfolgt, Impulse gegeben, eigenes Engagement gefördert und innovative Aktivitäten unterstützt.',
+	'web-link':         'http://jenseitsimviadukt.ch',
+	'logo':             'http://jenseitsimviadukt.ch/2011/images/jyaml/logos/jenseits_web.png',
+	'loc':              {
+		'type':'Point',
+		'coordinates':      [8.52234, 47.38632]
+	},
+	'tags':              ['TransitionZH', 'spirituality', 'youth']
+},{
+	'name':             '',
+	'claim':            '',
+	'description':      '',
+	'web-link':         '',
+	'logo':             '',
+	'loc':              {
+		'type':'Point',
+		'coordinates':      []
+	},
+	'tags':              ['TransitionZH']
+}]
+
+
+
+/*
+	Roles: [
+	    Editors
+	    (Contakt-persons)
+	    (Followers)
+	    ]
+	Locations : [
+	    Address : string
+	    Quartier : ID
+	    Geodata
+	    ]
+	Contacts: [mail]
+	Contacts: [tel]
+*/
