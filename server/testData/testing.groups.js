@@ -363,12 +363,3 @@ testGroups = [{
 	Contacts: [mail]
 	Contacts: [tel]
 */
-
-	'venue':            {
-			'venue':            {'loc':
-			        {
-				'type':'Point',
-				'coordinates':      [8.55952, 47.41030]
-			}
-
-},}
