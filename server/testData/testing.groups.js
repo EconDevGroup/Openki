@@ -52,7 +52,7 @@ testGroups = [{
 	'claim':            '',
 	'description':      'Die Nachhaltigkeitswoche (NHW) ist ein Projekt von Studierenden von fünf Zürcher Hochschulen: ETHZ, UZH, ZHdK, ZHAW und PHZH. Die dritte Woche des Frühlingssemesters ist an den Hochschulen ganz der Nachhaltigkeit gewidmet. Im Rahmen von mehrere Veranstaltungen soll das Thema Nachhaltigkeit (ökologisch, sozial und ökonomisch) breit diskutiert und die Studierendenschaft gebildet und sensibilisiert werden. Alle Veranstaltungen sind öffentlich und kostenlos.',
 	'members':          ['Vera','Nicolle'],
-	'web-link':         'http://nachhaltigkeitswoche.ch',
+	'webLink':          'http://nachhaltigkeitswoche.ch',
 	'logo':             'http://nachhaltigkeitswoche.ch/site/templates/images/logo.png',
 	'tags':             ['TransitionZH']
 },{
@@ -122,8 +122,7 @@ testGroups = [{
 	'short':            '',
 	'claim':            '',
 	'description':      '',
-	'members':          [''],
-	'tags':             ['TransitionZH']
+	'members':          ['']
 }];
 
 
@@ -134,7 +133,7 @@ Organisations = [{                           //partners of transition network
 	'name':             'Bio für Jede',
 	'claim':            '',
 	'description':      'Der Verein möchte seinen Teil dazu beitragen, eine positive Neuausrichtung zu bewirken. Durch Vertrauen in uns selbst, in das was wir praktisch umsetzten, denken, sagen und fühlen, möchten wir die Verantwortung übernehmen und die Möglichkeit ergreifen, dieses Vertrauen weiter zu geben. Wir arbeiten mit den Lebensmittel, welche bereits vorhanden sind, mit dem Wissen, welches gegenwärtig ist. Wir möchten, dass es jedem möglich ist, sich von biologischen Lebensmitteln zu ernähren. Wir wollen gegen die Wegwerf-Gesellschaft angehen und unabhängig vorhandenes Wissen weitergeben. Wir wollen weiter kommen an den Punkt, an dem wir jetzt stehen.',
-	'web-link':          'https://biofürjede.ch/',
+	'webLink':           'https://biofürjede.ch/',
 	'logo':              'https://biofürjede.ch/++theme++theme/images/icon-256.png',
 	'loc':               {                             //prepare for multiple locations?
 		'type':'Point',
@@ -145,7 +144,7 @@ Organisations = [{                           //partners of transition network
 	'name':             'project 21',
 	'claim':            'sustainability – your responsibility.',
 	'description':      '[project 21] ist ein Verein für Studierende in Zürich, die sich kritisch und tiefschürfend mit Fragen rund um nachhaltige Entwicklung auseinandersetzen. Der Verein [project 21] dient dabei zugleich als administrative Plattform für innovative studentische Projekte im Bereich Nachhaltigkeit sowie als Netzwerk zum Austausch unter engagierten Studierenden.',
-	'web-link':         'http://www.project21.ch/',
+	'webLink':          'http://www.project21.ch/',
 	'logo':             'http://www.project21.ch/templates/p21-joomla25/images/p21-logo.svg',
 	'loc':              {
 		'type':'Point',
@@ -156,7 +155,7 @@ Organisations = [{                           //partners of transition network
 	'name':             'NeNa1',
 	'claim':            'Bau- & Wohngenossenschaft',
 	'description':      'NeNa1 ist eine Bau- und Wohngenossenschaft, die in Zürich eine Neustart-Nachbarschaft realisieren will, d.h. eine Siedlung mit ca. 500 Bewohnenden, die eine Reihe Ideen aus den Bereichen ökologische Nachhaltigkeit und alternatives Zusammenleben verbindet.',
-	'web-link':         'https://nena1.ch',
+	'webLink':          'https://nena1.ch',
 	'logo':             'https://nena1.ch/sites/default/files/NENA1_Logo_4.gif',
 	'loc':              {
 		'type':'Point',
@@ -167,7 +166,7 @@ Organisations = [{                           //partners of transition network
 	'name':             'sinndrin',
 	'claim':            'Die sinndrin Genossenschaft ist ein auf Nachhaltigkeit ausgerichtetes Team von Ingenieuren',
 	'description':      'Unsere Vision ist es sinnstiftende Projekte umzusetzen, die der Gesellschaft von Nutzen sind. Dabei sind wir offen für alle Projekte die unseren Grundsätzen folgen. Die stetige Weiterentwicklung der Genossenschaft und ihrer Mitarbeitenden ist uns wichtig, weshalb wir auch an der Bearbeitung neuer Themenbereiche interessiert sind. Neben der Realisierung von Projekten bieten wir eine Plattform für Menschen die nach den Grundsätzen der Genossenschaft Aufträge und Projekte verwirklichen wollen.',
-	'web-link':         'http://www.sinndrin.ch',
+	'webLink':          'http://www.sinndrin.ch',
 	'logo':             'http://www.sinndrin.ch/images/design/logo.png',
 	'loc':              {
 		'type':'Point',
@@ -178,7 +177,7 @@ Organisations = [{                           //partners of transition network
 	'name':             '5 im 5i',
 	'claim':            '',
 	'description':      'Wem gehört der Kreis 5 von Zürich? Und wer gestaltet dieses innerstädtische Quartier, das direkt hinter dem Hauptbahnhof liegt? Aus solchen Fragen ist im Frühjahr 2015 das Forum 5im5i entstanden. Wir erarbeiten und diskutieren Ideen zur Quartierbelebung. Das Forum trifft sich monatlich, ist basisdemokratisch organisiert und versteht sich als politisch und religiös neutral. Mitmachen können auch Leute, die selber nicht im Kreis 5 wohnen oder arbeiten. Uns alle verbindet ein Interesse an Stadtentwicklung mit Fokus auf den Kreis 5.',
-	'web-link':         'http://www.5im5i.ch',
+	'webLink':          'http://www.5im5i.ch',
 	'logo':             'http://www.5im5i.ch/pub/files/theme_files_q/logo/logo.jpg',
 	'loc':              {
 		'type':'Point',
@@ -189,7 +188,7 @@ Organisations = [{                           //partners of transition network
 	'name':             'Kompotoi',
 	'claim':            'Mit uns wird jede Sitzung zum Erlebnis!',
 	'description':      'Der Verein Kompotoi fördert und vermittelt Fachwissen rund um Komposttoiletten. Er hat sich zum Ziel gesetzt, natürliche Kreisläufe zu schliessen und den nachhaltigen Umgang mit unseren Ressourcen zu fördern. Im speziellen möchte der Verein mit seinen Tätigkeiten den Aufbau gesunder Böden und den Schutz von aquatischen Lebensräumen fördern. Kompotoi setzt die Komposttoilette als Wissensvermittlerin ins Rampenlicht. Der Verein fördert die Forschung an innovativen Verfahren zur Wissenserweiterung im Umgang mit Restmaterial aus den Toiletten. Der Verein ist bestrebt, aus seinen Tätigkeiten nachhaltige und wirtschaftliche Lösungsansätze für eine zukunftsfähige Gesellschaft hervorzubringen. ',
-	'web-link':         'http://www.kompotoi.ch/',
+	'webLink':          'http://www.kompotoi.ch/',
 	'logo':             'https://image.jimcdn.com/app/cms/image/transf/dimension=394x10000:format=png/path/s7f148a1e9bc7bea4/image/id7ac095658eb52e6/version/1477056573/image.png',
 	'loc':              {
 		'type':'Point',
@@ -200,7 +199,7 @@ Organisations = [{                           //partners of transition network
 	'name':             'Openki',
 	'claim':            'What do you want to learn?',
 	'description':      'Openki ist eine interaktive Web-Plattform in Entwicklung mit dem Ziel, einen hürdenfreien Zugang zu Bildung für alle zu ermöglichen. Die Web-Plattform ist ein einfaches Open-Source Werkzeug für den lokalen, selbstorganisierten Wissensaustausch: Als Basis zur Vermittlung von unkommerziellen Bildungsangeboten, als Schnittstelle zwischen Menschen, die sich für ähnliche Themen begeistern und als Instrument, welches die Organisation von “peer-to-peer”-Wissensaustausch vereinfacht. Die Plattform ermöglicht sämtliche Prozesse von der Themenfindung über die Organisation und Durchführung von Kursen bis zur Dokumentation des Lernmaterials.',
-	'web-link':         'http://about.openki.net',
+	'webLink':          'http://about.openki.net',
 	'logo':             'http://about.openki.net/wp-content/uploads/2016/11/OpenkiLogo_groesser_1024_siebdruck_femal_2_cleaned.png',
 	'loc':              {
 		'type':'Point',
@@ -212,7 +211,7 @@ Organisations = [{                           //partners of transition network
 	'short':            'revamp',
 	'claim':            'hardware, menschen, knowhow',
 	'description':      'Revamp-it ist ein im Handelsregister eingetragener selbsttragender gemeinnütziger Verein. Wir nehmen gebrauchte Hardware entgegen und machen sie wieder einsatzfähig.',
-	'web-link':         'http://revamp-it.ch/',
+	'webLink':          'http://revamp-it.ch/',
 	'logo':             'http://revamp-it.ch/images/stories/logo.gif',
 	'loc':              {
 		'type':'Point',
@@ -223,7 +222,7 @@ Organisations = [{                           //partners of transition network
 	'name':             'DANACH',
 	'claim':            'Gemeinsam einen zukunftsfähigen Lebensstil gestalten',
 	'description':      'Als Denklabor wollen wir die vielfältigen Möglichkeiten des neuen, kollaborativen Wirtschaftens (Sharing, Prosuming, Kooperationen, etc.) kennen und aufzeigen. Dieser Wirtschaftsform wollen wir die politische Relevanz verschaffen damit deren Potenziale für die nachhaltige Entwicklung ausgeschöpft werden. Im Fokus steht dabei immer die Selbstermächtigung des Menschen.',
-	'web-link':         'https://danach.info',
+	'webLink':          'https://danach.info',
 	'logo':             'https://danach.jetzt/dateien/bilder/CI/DANACH_Logo.png',
 	'loc':              {
 		'type':'Point',
@@ -234,7 +233,7 @@ Organisations = [{                           //partners of transition network
 	'name':             'jenseits',
 	'claim':            '',
 	'description':      'jenseits IM VIADUKT ist ein Ort für junge Erwachsene (18–30J.) unabhängig von Nationalität und Religionszugehörigkeit. Hier werden Ideen verwirklicht, Spuren verfolgt, Impulse gegeben, eigenes Engagement gefördert und innovative Aktivitäten unterstützt.',
-	'web-link':         'http://jenseitsimviadukt.ch',
+	'webLink':          'http://jenseitsimviadukt.ch',
 	'logo':             'http://jenseitsimviadukt.ch/2011/images/jyaml/logos/jenseits_web.png',
 	'loc':              {
 		'type':'Point',
@@ -245,7 +244,7 @@ Organisations = [{                           //partners of transition network
 	'name':             '',
 	'claim':            '',
 	'description':      '',
-	'web-link':         '',
+	'webLink':          '',
 	'logo':             '',
 	'loc':              {
 		'type':'Point',
