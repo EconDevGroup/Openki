@@ -4,7 +4,6 @@
 			<a href="{{pathFor 'showCourse'}}">
 				<div class="course-compact
 					{{courseState}}
-					course-compact-category-{{courseCategoryIdentifier}}
 					{{#if needsRole 'host'}}needsHost{{/if}}
 					{{#if needsRole 'mentor'}}needsMentor{{/if}}
 					{{#each categories}}{{this}} {{/each}}
@@ -18,7 +17,7 @@
 						</div>
 						<div class="course-compact-categories">
 							{{#each mainCategories 4}}
-								<span class="fa fa-{{icon}} category-{{categoryIdentifier}}" aria-hidden="true"></span>
+								<span class="fa fa-{{icon}}" aria-hidden="true"></span>
 							{{/each}}
 						</div>
 						{{#unless hasUpcomingEvents}}

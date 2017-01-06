@@ -11,7 +11,6 @@ Template.courseCompact.onCreated(function() {
 	});
 
 	instance.mainCategories = mainCategories;
-	instance.mainCategoriesCount = mainCategories.length;
 });
 
 Template.courseCompact.helpers({
@@ -30,37 +29,11 @@ Template.courseCompact.helpers({
 		return courseState === 'proposal';
 	},
 
-	courseCategoryIdentifier: function() {
-		var instance = Template.instance();
-		var mainCategories = instance.mainCategories;
-		var mainCategoriesCount = instance.mainCategoriesCount;
-
-		if (!mainCategoriesCount) return 'no-category';
-
-		// limit number of main categories taken into account
-		mainCategories = mainCategories.slice(0, 1);
-
-		var mainCategoryIdentifiers = _.map(mainCategories, function(mainCategory) {
-			return mainCategory._id;
-		});
-
-		// calculate identifier for if the course has more than one main category
-		var courseCategoryIdentifier = _.reduce(mainCategoryIdentifiers, function(a, b) {
-			return a + b * 10;
-		});
-
-		return courseCategoryIdentifier;
-	},
-
 	mainCategories: function(limit) {
 		var instance = Template.instance();
 		var mainCategories = instance.mainCategories;
 
 		return mainCategories.slice(0, limit);
-	},
-
-	categoryIdentifier: function() {
-		return Categories.indexOf(this) + 1;
 	},
 
 	needsRole: function(role) {

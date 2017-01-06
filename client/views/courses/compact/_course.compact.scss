@@ -38,6 +38,8 @@
 
 	&.proposal,
 	&.has-past-events {
+		background-color: rgba($blue-lighter, .2);
+		border-color: rgba($blue-light, .3);
 		border-width: $course-border-width;
 	}
 
@@ -50,7 +52,7 @@
 	}
 
 	&.has-upcoming-events {
-		background: $has-upcoming-events-bg;
+		background-color: $blue-lighter;
 	}
 
 	&.filter-no-match,
@@ -62,52 +64,28 @@
 	&.filter-no-match-delayed {
 		transition-delay: .3s;
 	}
-	//
-	// &.course-compact-category-no-category {
-		$no-category-color: $blue-lighter;
 
-		&.proposal,
-		&.has-past-events {
-			background-color: rgba($no-category-color, .2);
-			// border-color: rgba($green, .8);
-			border-color: rgba($blue-light, .3);
-		}
+	.course-compact-next-event {
+		background-color: rgba($green-dark, .7);
+		color: $white;
+	}
 
-		&.has-upcoming-events {
-			background-color: rgba($no-category-color, 1);
-		}
+	.course-compact-role-needed {
+		color: rgba($blue-light, .3);
+	}
 
-		.course-compact-next-event {
-			background-color: rgba($green-dark, .7);
-			// background-color: rgba($blue-light, .7);
-			// box-shadow: 0 1px 1px rgba(0, 0, 0, .3);
-			color: $white;
-		}
+	.course-compact-role-occupied,
+	.course-compact-role-occupied-by-user {
+		color: rgba($blue-light, 1);
+	}
 
-		.course-compact-role-needed {
-			color: rgba($no-category-color, 1);
-		}
-
-		.course-compact-role-occupied,
-		.course-compact-role-occupied-by-user {
-			color: rgba($blue-light, .7);
-		}
-
-		.js-group-label,
-		.js-group-label:hover,
-		.js-group-label:focus {
-			background-color: rgba($blue-light, .2);
-			color: rgba($blue-light, 1);
-		}
-	// }
-}
-
-@each $category-index, $category-color in $category-computed-colors {
-	.category-#{$category-index} {
-		color: rgba($category-color, .4);
+	.js-group-label,
+	.js-group-label:hover,
+	.js-group-label:focus {
+		background-color: rgba($blue-light, .2);
+		color: rgba($blue-light, 1);
 	}
 }
-
 
 // ** Content
 //========================================================================================
@@ -138,7 +116,8 @@
 //========================================================================================
 .course-compact-categories {
 	bottom: 0;
-	font-size: xx-large;
+	color: $blue-light;
+	font-size: x-large;
 	padding-bottom: $course-border-width;
 	position: absolute;
 }
@@ -218,5 +197,5 @@
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	margin-bottom: $course-border-width * 1.5;
+	margin-bottom: $course-border-width * 2.5;
 }

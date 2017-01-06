@@ -1,6 +1,4 @@
 .categories-menu {
-	// background-color: $blue-lighter;
-	// border-bottom: 3px solid $blue;
 	background-color: lighten($gray-lightest,4%);
 	box-shadow: 0 0 5px rgba(0, 0, 0, .3);
 	display: none;
@@ -36,7 +34,11 @@
 	text-align: center;
     z-index: $zindex-navbar-fixed + 10;
 
-	&:hover {
+	&:hover,
+	&.active {
+		background-color: $blue-light;
+		box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+		color: $white;
 		cursor: pointer;
 	}
 }
@@ -45,17 +47,4 @@
 	display: block;
 	font-size: x-large;
 	margin-bottom: 5px;
-}
-
-@each $i, $color in $category-base-colors {
-	.menu-category-#{$i} {
-		color: rgba($color, .5);
-	}
-
-	.menu-category-#{$i}:hover,
-	.menu-category-#{$i}.active {
-		background-color: rgba($color, .5);
-		box-shadow: 0 0 3px rgba(0, 0, 0, .3);
-		color: $white;
-	}
 }
