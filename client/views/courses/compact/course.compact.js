@@ -29,11 +29,12 @@ Template.courseCompact.helpers({
 		return courseState === 'proposal';
 	},
 
-	mainCategories: function(limit) {
+	mainCategoriesLimited: function() {
+		var maxLimit = 4;
 		var instance = Template.instance();
 		var mainCategories = instance.mainCategories;
 
-		return mainCategories.slice(0, limit);
+		return mainCategories.slice(0, maxLimit);
 	},
 
 	needsRole: function(role) {
