@@ -29,7 +29,7 @@ testGroups = [{
 	'claim':            'Bildung für alle',
 	'description':      'Die Autonome Schule Zürich ist ein selbstverwaltetes Bildungsprojekt in Zürich. Es werden zahlreiche Kurse kostenlos angeboten, wobei stets die Möglichkeit besteht sich an Kursen bzw. am Schulprojekt zu beteiligen. Essentiell sind dabei die Deutschkurse, welche besonders für MigrantInnen und Sans-Papiers einen hürdenfreien und emanzipatorischen Zugang zur Sprache ermöglichen.',
 	'members':          ['greg'],
-	'logo':             '/zurich/groups/ASZ.png'
+	'logo':             'https://sandbox.openki.net/zurich/groups/ASZ.png'
 },{
 	'name':             'Schweizerische Gesellschaft für Mechatronische Kunst',
 	'short':            'SGMK',
@@ -47,20 +47,48 @@ testGroups = [{
 	'claim':            '',
 	'description':      'Das MAXIM Theater im Langstrassenquartier in Zürich ist das interkulturell engagierte Theater der Stadt.<br> Im MAXIM Theater spielen Laien und ausgebildete KünstlerInnen aus allen Teilen der Welt. In einem gemeinsamen künstlerischen Prozess geben sie den unterschiedlichsten Erfahrungen von MigrantInnen eine Stimme.',
 },{
-	'name':             'Nachhaltigkeitswoche',
-	'short':            'NHW',
-	'claim':            '',
-	'description':      'Die Nachhaltigkeitswoche (NHW) ist ein Projekt von Studierenden von fünf Zürcher Hochschulen: ETHZ, UZH, ZHdK, ZHAW und PHZH. Die dritte Woche des Frühlingssemesters ist an den Hochschulen ganz der Nachhaltigkeit gewidmet. Im Rahmen von mehrere Veranstaltungen soll das Thema Nachhaltigkeit (ökologisch, sozial und ökonomisch) breit diskutiert und die Studierendenschaft gebildet und sensibilisiert werden. Alle Veranstaltungen sind öffentlich und kostenlos.',
-	'members':          ['Vera','Nicolle'],
+	"name": "Nachhaltigkeitswoche\n",
+	"description": "Die Nachhaltigkeitswoche ist ein studentisches Projekt, das durch das ehrenamtliche Engagement von mehr als 60 Studierende organisiert wird. Während einer Woche werden an verschiedenen Veranstaltungen Brennpunkte der Nachhaltigkeit in Politik, Gesellschaft und Privatem thematisiert. Alle Veranstaltungen sind dabei öffentlich und kostenlos. Auch wird jeden Tag eine Forderung an die Hochschulen gestellt um die Nachhaltigkeitsarbeit der Hochschulen konstruktiv zu unterstützen. Die Veranstaltungen sollen dabei Plattform für praktische Lösungsansätze und konstruktive, transdisziplinäre Diskussion sein. ",
 	'webLink':          'http://nachhaltigkeitswoche.ch',
-	'logo':             '/zurich/groups/Nachhaltigkeitswoche.png',
-	'venue':            {
-		'loc':              {
-			'type':'Point',
-			'coordinates':       [8.54881, 47.37835],
+	'logo':             'https://sandbox.openki.net/zurich/groups/Nachhaltigkeitswoche.png',
+	"venues": [
+		{
+			"loc": {
+				"type": "Point",
+				"coordinates": [8.5073852,47.4082698]
+			}
+		},
+		{
+			"loc": {
+				"type": "Point",
+				"coordinates": [8.54770931,47.3764534]
+			}
+		},
+		{
+			"loc": {
+				"type": "Point",
+				"coordinates": [8.5342632,47.37730815]
+			}
+		},
+		{
+			"loc": {
+				"type": "Point",
+				"coordinates": [8.512142,47.3909515
+				]
+			}
+		},
+		{
+			"loc": {
+				"type": "Point",
+				"coordinates": [8.54959,47.37474]
+			}
 		}
-	},
-	'tags':             ['TransitionZH']
+	],
+	'tags': [
+		"TransitionZH",
+		"events-media-networks",
+		"events"
+	]
 },{
 	'name':             'Do It Yourself Züri',
 	'short':            'DIY-ZH',
@@ -103,7 +131,6 @@ testGroups = [{
 	'claim':            'selbstorganisation in der Bildung',
 	'description':      '',
 	'members':          ['sbalmer', 'Urban', 'lu40'],
-	'tags':             ['TransitionZH']
 },{
 	'name':             'Studiengang Kommunikationsguerilla',
 	'short':            'SKG',
@@ -116,10 +143,10 @@ testGroups = [{
 	'claim':            'In 365 Tagen zu einem nachhaltigeren Leben',
 	'description':      '<p>Das Projekt “Lern Dich Frei!” ist als Initiative von Student/innen der Universität Zürich entstanden und bietet während gut eines Jahres Raum für ein breites Spektrum an Themen und öffentlichen Veranstaltungen rund um eine zukunftsfähige Welt.</p><p>Das Ziel des Projektes ist es, nicht nur Wissen zu vermitteln, sondern auch eine Plattform für Expert/innen zu bieten, Netzwerke zu bilden und anregende und umsetzbare Ideen für den Alltag zu liefern.</p><p>Während eines Jahreszyklus’ finden wöchentlich öffentliche Events zu unterschiedlichen Themen statt. Die Teilnahme ist in der Regel kostenlos. Die Agenda ist <a href="http://lerndichfrei.ch/Calender.html">hier</a> zu finden - nutze diese Gelegenheit und nimm an einer unserer Veranstaltungen teil!</p><p>Wichtig: es gibt noch viel Raum für weitere Events, und Deine Ideen sind äusserst willkommen. Mehr zu Möglichkeiten, dich einzubringen, erfährst du <a href="http://lerndichfrei.ch/MakeEvent.html">hier</a>.</p>',
 	'members':          ['greg'],
-	'venue':            {
-		'loc':              {
+	'venue': {
+		'loc': {
 			'type':'Point',
-			'coordinates':       [8.55749, 47.35957],
+			'coordinates': [8.55749, 47.35957]
 		}
 	},
 	'tags':             ['TransitionZH', 'education', 'DIY']
@@ -153,129 +180,137 @@ testGroups = [{
 	'claim':           '',
 	'description':     'Der Verein möchte seinen Teil dazu beitragen, eine positive Neuausrichtung zu bewirken. Durch Vertrauen in uns selbst, in das was wir praktisch umsetzten, denken, sagen und fühlen, möchten wir die Verantwortung übernehmen und die Möglichkeit ergreifen, dieses Vertrauen weiter zu geben. Wir arbeiten mit den Lebensmittel, welche bereits vorhanden sind, mit dem Wissen, welches gegenwärtig ist. Wir möchten, dass es jedem möglich ist, sich von biologischen Lebensmitteln zu ernähren. Wir wollen gegen die Wegwerf-Gesellschaft angehen und unabhängig vorhandenes Wissen weitergeben. Wir wollen weiter kommen an den Punkt, an dem wir jetzt stehen.',
 	'webLink':          'https://biofürjede.ch/',
-	'logo':             '/zurich/groups/bio4jede.png',
-	'venue':            {
-		'loc':              {                             //prepare for multiple locations?
+	'logo':             'https://sandbox.openki.net/zurich/groups/bio4jede.png',
+	'venue': {
+		'loc': {                             //prepare for multiple locations?
 			'type':'Point',
-			'coordinates':       [8.53252, 47.38775],
+			'coordinates': [8.53252, 47.38775]
 		}
 	},
 	'tags':              ['TransitionZH', 'food', 'DIY']
 },{
 	'name':             'project 21',
 	'claim':            'sustainability – your responsibility.',
-	'description':      '[project 21] ist ein Verein für Studierende in Zürich, die sich kritisch und tiefschürfend mit Fragen rund um nachhaltige Entwicklung auseinandersetzen. Der Verein [project 21] dient dabei zugleich als administrative Plattform für innovative studentische Projekte im Bereich Nachhaltigkeit sowie als Netzwerk zum Austausch unter engagierten Studierenden.',
+	'description':      '[project 21] ist ein Verein für Studierende in Zürich, der sich kritisch und tiefschürfend mit Fragen rund um nachhaltige Entwicklung auseinandersetzt. Der Verein [project 21] dient dabei zugleich als administrative Plattform für innovative studentische Projekte im Bereich Nachhaltigkeit, als Netzwerk zum Austausch unter engagierten Studierenden sowie als Kompetenzzentrum Nachhaltigkeit und fördert somit den Nachhaltigkeitsgedanken in der ETH Zürich.',
 	'webLink':          'http://www.project21.ch/',
-	'logo':             'http://www.project21.ch/templates/p21-joomla25/images/p21-logo.svg',
-	'venue':            {
-		'loc':              {
+	'logo':             'https://sandbox.openki.net/zurich/groups/project21.png',
+	'venue': {
+		'loc': {
 			'type':'Point',
-			'coordinates':      [8.54896, 47.37836]
+			'coordinates': [8.54896, 47.37836]
 		}
 	},
-	'tags':              ['TransitionZH', 'education', 'environment', 'sustainability']
+	'tags':              ['TransitionZH', 'education', 'environment', 'sustainability', "events-media-networks", "networks"]
 },{
-	'name':             'NeNa1',
-	'claim':            'Bau- & Wohngenossenschaft',
-	'description':      'NeNa1 ist eine Bau- und Wohngenossenschaft, die in Zürich eine Neustart-Nachbarschaft realisieren will, d.h. eine Siedlung mit ca. 500 Bewohnenden, die eine Reihe Ideen aus den Bereichen ökologische Nachhaltigkeit und alternatives Zusammenleben verbindet.',
-	'webLink':          'https://nena1.ch',
-	'logo':             '/zurich/groups/NeNa1.jpg',
-	'venue':            {
-		'loc':              {
-			'type':'Point',
-			'coordinates':      [8.49627, 47.37812]
+	"name": "NeNa1",
+	"description": "NeNa1 ist eine Bau- und Wohngenossenschaft, die in Zürich eine Neustart-Nachbarschaft realisieren will, d.h. eine Siedlung mit ca. 500 Bewohnenden, die eine Reihe Ideen aus den Bereichen ökologische Nachhaltigkeit und alternatives Zusammenleben verbindet. Dazu gehören z.B. die Nahversorgung mit saisonalen Lebensmitteln, Relokalisierung von Lebens- und Arbeitsraum, das Teilen von Ressourcen und die Mit- und Zusammenarbeit aller Bewohnenden. ",
+	"webLink": "https://nena1.ch/",
+	"logo": "https://sandbox.openki.net/zurich/groups/NeNa1.jpg",
+	'venue': {
+		"loc": {
+			"type": "Point",
+			"coordinates": [8.4958896,47.3779673]
 		}
 	},
-	'tags':              ['TransitionZH', 'living', '']
+	'tags': [
+		"TransitionZH",
+		"living-mobility",
+		"living"
+	]
 },{
-	'name':             'sinndrin',
-	'claim':            'Die sinndrin Genossenschaft ist ein auf Nachhaltigkeit ausgerichtetes Team von Ingenieuren',
-	'description':      'Unsere Vision ist es sinnstiftende Projekte umzusetzen, die der Gesellschaft von Nutzen sind. Dabei sind wir offen für alle Projekte die unseren Grundsätzen folgen. Die stetige Weiterentwicklung der Genossenschaft und ihrer Mitarbeitenden ist uns wichtig, weshalb wir auch an der Bearbeitung neuer Themenbereiche interessiert sind. Neben der Realisierung von Projekten bieten wir eine Plattform für Menschen die nach den Grundsätzen der Genossenschaft Aufträge und Projekte verwirklichen wollen.',
-	'webLink':          'http://www.sinndrin.ch',
-	'logo':             'http://www.sinndrin.ch/images/design/logo.png',
-	'venue':            {
-		'loc':              {
-			'type':'Point',
-			'coordinates':      [8.57027, 47.42484]
+	"name": "sinndrin",
+	"description": "Unsere Vision ist es sinnstiftende Projekte umzusetzen, die der Gesellschaft von Nutzen sind. Dabei sind wir offen für alle Projekte die unseren Grundsätzen folgen. Neben der Realisierung von Projekten bieten wir eine Plattform für Menchen, die nach den Grundsätzen der Genossenschaft Aufträge und Projekte verwirklichen wollen. ",
+	"webLink": "http://www.sinndrin.ch/",
+	"logo": "https://sandbox.openki.net/zurich/groups/Sinndrin.png",
+	'venue': {
+		"loc": {
+			"type": "Point",
+			"coordinates": [8.56976, 47.42442]
 		}
 	},
-	'tags':              ['TransitionZH', 'technology']
+	'tags': ["TransitionZH", 'energy-environment-waste', 'technology', 'energy']
 },{
 	'name':             '5 im 5i',
 	'claim':            '',
 	'description':      'Wem gehört der Kreis 5 von Zürich? Und wer gestaltet dieses innerstädtische Quartier, das direkt hinter dem Hauptbahnhof liegt? Aus solchen Fragen ist im Frühjahr 2015 das Forum 5im5i entstanden. Wir erarbeiten und diskutieren Ideen zur Quartierbelebung. Das Forum trifft sich monatlich, ist basisdemokratisch organisiert und versteht sich als politisch und religiös neutral. Mitmachen können auch Leute, die selber nicht im Kreis 5 wohnen oder arbeiten. Uns alle verbindet ein Interesse an Stadtentwicklung mit Fokus auf den Kreis 5.',
 	'webLink':          'http://www.5im5i.ch',
-	'logo':             '/zurich/groups/5im5i.png',
-	'venue':            {
-		'loc':              {
+	'logo':             'https://sandbox.openki.net/zurich/groups/5im5i.png',
+	'venue': {
+		'loc': {
 			'type':'Point',
-			'coordinates':      [8.52672, 47.38511]
+			'coordinates': [8.52672, 47.38511]
 		}
 	},
 	'tags':              ['TransitionZH', 'gentrification', 'living']
 },{
-	'name':             'Kompotoi',
-	'claim':            'Mit uns wird jede Sitzung zum Erlebnis!',
-	'description':      'Der Verein Kompotoi fördert und vermittelt Fachwissen rund um Komposttoiletten. Er hat sich zum Ziel gesetzt, natürliche Kreisläufe zu schliessen und den nachhaltigen Umgang mit unseren Ressourcen zu fördern. Im speziellen möchte der Verein mit seinen Tätigkeiten den Aufbau gesunder Böden und den Schutz von aquatischen Lebensräumen fördern. Kompotoi setzt die Komposttoilette als Wissensvermittlerin ins Rampenlicht. Der Verein fördert die Forschung an innovativen Verfahren zur Wissenserweiterung im Umgang mit Restmaterial aus den Toiletten. Der Verein ist bestrebt, aus seinen Tätigkeiten nachhaltige und wirtschaftliche Lösungsansätze für eine zukunftsfähige Gesellschaft hervorzubringen. ',
-	'webLink':          'http://www.kompotoi.ch/',
-	'logo':             '/zurich/groups/Kompotoi.jpg',
-	'venue':            {
-		'loc':              {
-			'type':'Point',
-			'coordinates':      [8.51823, 47.38549]
+	"name": "Kompotoi",
+	"description": "KOMPOTOI ist ein junges Unternehmen, das sich für einen nachhaltigen Umgang mit Ressourcen und das Schliessen von Kreisläufen einsetzt. Konventionelle Miettoiletten benutzen zum Entsorgen der Reststoffe viel Chemie, Wasser und Energie. „Kompotoi“ Toiletten benötigen hingegen keine chemischen Zusätze und wandeln die Reststoffe in Wertstoffe um. Aus Abfall wird eine Ressource. Unsere Komposttoilette ist umweltfreundlich, absolut geruchsfrei und sieht erst noch gut aus. Mit ihrer Hilfe machen wir aus Ihrem «Human Output» einen Bodenverbesserer und schliessen so einen natürlichen Kreislauf. Wasser wird dabei keines verschmutzt.",
+	"webLink": "https://www.kompotoi.ch/",
+	"logo": "https://sandbox.openki.net/zurich/groups/Kompotoi.jpg",
+	'venue': {
+		"loc": {
+			"type": "Point",
+			"coordinates": [8.6531056,47.2733606]
 		}
 	},
-	'tags':              ['TransitionZH', 'waste']
+	'tags': [
+		"TransitionZH",
+		"energy-environment-waste",
+		"waste"
+	]
 },{
 	'name':             'Openki',
 	'claim':            'What do you want to learn?',
 	'description':      'Plattform zur Vernetzung und Selbstorganisation von Wissensaustausch. Auf Openki kann man Workshops, Kurse, Vorträge, Diskussionsrunden, etc. suchen, vorschlagen, sich anmelden, mitorganisieren oder publizieren. Unkompliziert, unkommerziell und nicht zuletzt open-source.',
 	'webLink':          'http://about.openki.net',
-	'logo':             '/zurich/groups/Openki.jpg',
-	'venue':            {
-		'loc':              {
+	'logo':             'https://sandbox.openki.net/zurich/groups/Openki.jpg',
+	'venue': {
+		'loc': {
 			'type':'Point',
-			'coordinates':      []
+			'coordinates': [8.5336683, 47.38478]
 		}
 	},
-	'tags':              ['TransitionZH', 'education']
+	'tags':              ['TransitionZH', 'education', 'events-media-networks', 'networks']
 },{
 	'name':             'revamp-it',
 	'short':            'revamp',
 	'claim':            'hardware, menschen, knowhow',
-	'description':      'Revamp-it ist ein im Handelsregister eingetragener selbsttragender gemeinnütziger Verein. Wir nehmen gebrauchte Hardware entgegen und machen sie wieder einsatzfähig.',
+	'description':      'revamp-it ist ein gemeinnütziger Verein. Wir bieten soziale Arbeitsplätze und engagieren uns für einen nachhaltigen Umgang mit IT. Dies verwirklichen wir mit funktionalem Recycling (Reparatur und Wiedereinsatz möglichst aller noch funktionsfähigen Computer-Komponenten) und der Förderung und Verbreitung von OpenSource Software (Linux als Betriebssystem und eine grosse Palette von freier Software für den privaten und geschäftlichen Gebrauch). Konkret bieten wir folgende Dienstleistungen: Second-Hand-Verkauf und Reparaturen von Computer-Hardware, Linux-Installationen und IT-Beratungen privat, für Institutionen und Firmen, Hosting und Housing von Webapplikationen und Serverleistungen, Weiterbildungen in Linux und freier Software, Entwicklung von freier Software, Erstellen von Programmschnittstellen etc., Kompletter IT-Support (Hardware, Software, Weiterbildung) für Institutionen, Firmen und Private.',
 	'webLink':          'http://revamp-it.ch/',
-	'logo':             '/zurich/groups/revampit.gif',
-	'venue':            {
-		'loc':              {
+	'logo':             'https://sandbox.openki.net/zurich/groups/revampit.gif',
+	'venue': {
+		'loc': {
 			'type':'Point',
-			'coordinates':      [8.52478, 47.39303]
+			'coordinates': [8.52478, 47.39303]
 		}
 	},
-	'tags':              ['TransitionZH', 'recycling']
+	'tags':              ['TransitionZH', 'recycling', "shopping", "second-hand"]
 },{
-	'name':             'DANACH',
-	'claim':            'Gemeinsam einen zukunftsfähigen Lebensstil gestalten',
-	'description':      'Als Denklabor wollen wir die vielfältigen Möglichkeiten des neuen, kollaborativen Wirtschaftens (Sharing, Prosuming, Kooperationen, etc.) kennen und aufzeigen. Dieser Wirtschaftsform wollen wir die politische Relevanz verschaffen damit deren Potenziale für die nachhaltige Entwicklung ausgeschöpft werden. Im Fokus steht dabei immer die Selbstermächtigung des Menschen.',
-	'webLink':          'https://danach.info',
-	'logo':             '/zurich/groups/DANACH.png',
-	'venue':            {
-		'loc':              {
-			'type':'Point',
-			'coordinates':      []
+	"name": "DANACH",
+	"description": "Als Denklabor wollen wir die vielfältigen Möglichkeiten des neuen, kollaborativen Wirtschaftens (Sharing, Prosuming, Kooperationen, etc.) kennen. Dieser wollen wir die politische Relevanz verschaffen, dass deren Potentiale für die nachhaltige Entwicklung ausgeschöpft werden. Mit den dafür relevanten Organisationen, Initiativen und Schlüsselpersonen kreieren wir partizipative Prozesse, welche die Potenziale der kollaborativen Wirtschaft aufzeigen. Die daraus gewonnen Erkenntnisse stellen wir allen interessierten Akteuren über Austauschplattformen (persönlich, digital) zur Verfügung. Den Stakeholdern aus Politik, Wirtschaft, Wissenschaft, Medien, etc. stellen wir dieses Wissen und die entsprechenden Prozesse dafür zur Verfügung. ",
+	"webLink": "https://danach.info/",
+	"logo": "https://sandbox.openki.net/zurich/groups/DANACH.png",
+	'venue': {
+		"loc": {
+			"type": "Point",
+			"coordinates": [8.54599, 47.39413]
 		}
 	},
-	'tags':              ['TransitionZH', 'economy', 'degrowth']
+	'tags': [
+		"TransitionZH",
+		"events-media-networks",
+		"networks"
+	]
 },{
 	'name':             'jenseits',
 	'claim':            '',
 	'description':      'jenseits IM VIADUKT ist ein Ort für junge Erwachsene (18–30J.) unabhängig von Nationalität und Religionszugehörigkeit. Hier werden Ideen verwirklicht, Spuren verfolgt, Impulse gegeben, eigenes Engagement gefördert und innovative Aktivitäten unterstützt.',
 	'webLink':          'http://jenseitsimviadukt.ch',
 	'logo':             'http://jenseitsimviadukt.ch/2011/images/jyaml/logos/jenseits_web.png',
-	'venue':            {
-		'loc':              {
+	'venue': {
+		'loc': {
 			'type':'Point',
-			'coordinates':      [8.52234, 47.38632]
+			'coordinates': [8.52234, 47.38632]
 		}
 	},
 	'tags':              ['TransitionZH', 'spirituality', 'youth']
@@ -284,11 +319,11 @@ testGroups = [{
 	'claim':            '',
 	'description':      'Wir bieten eine einfach und simple Recycling Lösung für Firmen und Privatkunden. Wir probieren unsere Firma möglichst Ökologisch zu halten und leisten Pionierarbeit bei der Elektromobilität. ',
 	'webLink':          'http://www.pinkbag.ch',
-	'logo':             '/zurich/groups/ReTake.png',
-	'venue':            {
-		'loc':              {
+	'logo':             'https://sandbox.openki.net/zurich/groups/ReTake.png',
+	'venue': {
+		'loc': {
 			'type':'Point',
-			'coordinates':      [8.55952, 47.41030]
+			'coordinates': [8.55952, 47.41030]
 		}
 	},
 	'tags':              ['TransitionZH']
@@ -297,18 +332,18 @@ testGroups = [{
 	'claim':            '',
 	'description':      'Menschen aus allen Regionen und Kontinenten transformieren die heutige Gesellschaft – ein Paradigmenwechsel. Auch in unserem Land entfalten sich Initiativen, die den Wandel unterstützen – Menschen, Ökodörfer und Projekte zeigen, inspirieren und vernetzen sich und du bist wärmstens eingeladen daran teilzunehmen',
 	'webLink':          'https://www.facebook.com/GEN.Suisse',
-	'logo':             '/zurich/groups/GEN-Suisse.jpg',
+	'logo':             'https://sandbox.openki.net/zurich/groups/GEN-Suisse.jpg',
 	'tags':              ['TransitionZH']
 },{
 	'name':             'Pumpipumpe',
 	'claim':            '',
 	'description':      'Bestelle auf unserer Website deine Sticker, klebe sie an deinen Briefkasten und lass damit deine Nachbarn sehen, welche Dinge sie von dir ausleihen können. So kannst du dich ganz einfach und lokal für einen sinnvollen, nachhaltigen Umgang mit Konsumgütern einsetzen, lernst dabei deine Nachbarn besser kennen und musst erst noch weniger Geräte kaufen.',
 	'webLink':          'http://www.pumpipumpe.ch',
-	'logo':             '/zurich/groups/pumpipumpe.png',
-	'venue':            {
-		'loc':              {
+	'logo':             'https://sandbox.openki.net/zurich/groups/pumpipumpe.png',
+	'venue': {
+		'loc': {
 			'type':'Point',
-			'coordinates':      [8.51839, 47.38567]
+			'coordinates': [8.51839, 47.38567]
 		}
 	},
 	'tags':              ['TransitionZH', 'share']
@@ -317,31 +352,168 @@ testGroups = [{
 	'claim':            '',
 	'description':      'Unterstützt Engagement des zivilgesellschaftlichen Wandels mit Räumen und Knowhow',
 	'webLink':          'http://www.wandellust.ch',
-	'logo':             '/zurich/groups/wandellust.png',
-	'venue':            {
-		'loc':              {
+	'logo':             'https://sandbox.openki.net/zurich/groups/wandellust.png',
+	'venue': {
+		'loc': {
 			'type':'Point',
-			'coordinates':       [8.55749, 47.35957],
+			'coordinates': [8.55749, 47.35957]
 		}
 	},
 	'tags':              ['TransitionZH', 'change']
 },{
-	'name':             'Nebenrolle Natur',
-	'claim':            '',
-	'description':      'Nebenrolle Natur wurde im Februar 2012 von einer Gruppe von Film-Enthusiasten und engagierten Naturfreunden gegründet. Ziel war es ein Forum zu schaffen, in dem sich Interessierte mit Umweltthemen und dem gesellschaftlichen Wandel auseinandersetzen können. Der Verein wird von Freiwilligen getragen, die sowohl die Begeisterung für Umweltthemen wie auch für Filme teilen. Ein Team von derzeit etwa 15 Personen macht es sich zur Aufgabe, die wichtigsten Themen und spannendsten Filme aus dem Bereich Umwelt und Gesellschaft  auszuwählen und mit zusätzlichen Expertengesprächen, Präsentationen und Mögchlichkeiten der Interaktion gesamtheitlich als Film & Diskussions Events anzubieten. Wir zeigen Filme die bewegen um Menschen zu bewegen.',
-	'webLink':          'http://www.nebenrolle-natur.ch',
-	'logo':             '/zurich/groups/NebenrolleNatur.jpg',
-	'tags':              ['TransitionZH']
+	"name": "Nebenrolle Natur",
+	"description": "Nebenrolle Natur wurde im Februar 2012 von einer Gruppe von Film-Enthusiasten und engagierten Naturfreunden gegründet. Ziel war es ein Forum zu schaffen, in dem sich Interessierte mit Umweltthemen und dem gesellschaftlichen Wandel auseinandersetzen können. Der Verein wird von Freiwilligen getragen, die sowohl die Begeisterung für Umweltthemen wie auch für Filme teilen. Ein Team von derzeit etwa 15 Personen macht es sich zur Aufgabe, die wichtigsten Themen und spannendsten Filme aus dem Bereich Umwelt und Gesellschaft  auszuwählen und mit zusätzlichen Expertengesprächen, Präsentationen und Mögchlichkeiten der Interaktion gesamtheitlich als Film & Diskussions Events anzubieten. Wir zeigen Filme die bewegen um Menschen zu bewegen. ",
+	"webLink": "http://www.nebenrolle-natur.ch/wordpress/",
+	"logo": "https://sandbox.openki.net/zurich/groups/NebenrolleNatur.jpg",
+	'venue': {
+		"loc": {
+			"type": "Point",
+			"coordinates": []
+		}
+	},
+	'tags': [
+		"TransitionZH",
+		"events-media-networks",
+		"events"
+	]
+},{
+	"name": "Foodsharing",
+	"description": "foodsharing ist eine Initiative, die sich gegen die Lebensmittelverschwendung einsetzt. Die Plattform bietet Privatpersonen und Händlern die Möglichkeit überschüssige Lebensmittel zu retten und zu teilen. Durch Informationen, Veranstaltungen und weitere Aktivitäten stärken wir das Bewusstsein der  Menschen für die Problematik und bieten damit praktische  Lösungsansätze für Betriebe und engagierte BürgerInnen.",
+	"webLink": "https://beta.foodsharing.de/?page=fairteiler&sub=ft&id=417",
+	"logo": "https://sandbox.openki.net/zurich/groups/foodsharing.png",
+	'venue': {
+		"loc": {
+			"type": "Point",
+			"coordinates": [8.5336683,47.38478]
+		}
+	},
+	'tags': [
+		"TransitionZH",
+		"food",
+		"foodwaste"
+	]
+},{
+	"name": "iGEP",
+	"description": "Die Grundidee hinter dem Vorschlag für ein Bedingungsloses GrundEinkommen (BGE) ist es ja, Bedingungen zu schaffen, damit möglichst alle Menschen das zur Wirtschaft, dem Gemeinwohl und der eigenen Lebensgemeinschaft beitragen können und dürfen, was sie gerne machen und gut können oder gerade als besondere Notwendigkeit sehen. Diese Grundidee machen sich Menschen schon hier und jetzt zur Maxime, auch wenn viele davon keine gesicherte materielle Basis dafür haben: Sie tun „als ob“, so gut es geht.",
+	"webLink": "http://i-gep.ch/gelb/igep.html",
+	"logo": "https://sandbox.openki.net/zurich/groups/",
+	'venue': {
+		"loc": {
+			"type": "Point",
+			"coordinates": []
+		}
+	},
+	'tags': [
+		"TransitionZH",
+		"events-media-networks",
+		"networks"
+	]
+},{
+	"name": "Kulturbande",
+	"description": "Kulturbande ist ein Netzwerk, mit dem Ziel den gesellschaftlichen Wandel zu verstehen, zu fördern und zu dokumentieren. Dazu realisierten wir ein Buch, welches im Mai veröffentlicht wird. ",
+	"webLink": "http://www.kulturbande.info/",
+	"logo": "https://sandbox.openki.net/zurich/groups/kulturbande.jpg",
+	'venue': {
+		"loc": {
+			"type": "Point",
+			"coordinates": []
+		}
+	},
+	'tags': [
+		"TransitionZH",
+		"events-media-networks",
+		"media"
+	]
+},{
+	"name": "meh als gmües",
+	"description": "meh als gmües ist eine Gemüsekooperative in Zürich Affoltern, die mehr als 200 Mitglieder mit saisonalem, biologisch produziertem Gemüse versorgt.",
+	"webLink": "http://www.mehalsgmues.ch/",
+	"logo": "https://sandbox.openki.net/zurich/groups/mehalsgmuees.jpg",
+	'venue': {
+		"loc": {
+			"type": "Point",
+			"coordinates": [8.518017,47.424237]
+		}
+	},
+	'tags': [
+		"TransitionZH",
+		"food",
+		"coop"
+	]
+},{
+	"name": "Musik ohne Grenzen",
+	"description": "Flüchtlinge bringen nicht nur tragische Geschichten mit, sondern auch herzerwärmende Musik. Mit der Konzertreihe «Flüchtlinge auf die Bühne» möchte ich Asylsuchenden eine musikalische Plattform bieten. Ein kleiner, feiner Raum in Winterthur ist bereits vorhanden.",
+	"webLink": "http://www.irenemazza.ch/brueckenbauerin",
+	"logo": "https://sandbox.openki.net/zurich/groups/",
+	'venue': {
+		"loc": {
+			"type": "Point",
+			"coordinates": []
+		}
+	},
+	'tags': [
+		"TransitionZH",
+		"events-media-networks",
+		"events"
+	]
+},{
+	"name": "restart-Party",
+	"description": "Reparieren statt Wegwerfen ist das Ziel der Restart-Party Zürich. Teilnehmende bringen ihre defekten Geräte mit und versuchen zusammen mit den “Restartern” das Gerät zu reparieren. ",
+	"webLink": "https://restartzuerich.jimdo.com/",
+	"logo": "https://sandbox.openki.net/zurich/groups/restart_party_zh.png",
+	'venue': {
+		"loc": {
+			"type": "Point",
+			"coordinates": []
+		}
+	},
+	'tags': [
+		"TransitionZH",
+		"shopping",
+		"second-hand"
+	]
+},{
+	"name": "Permakultur Landwirtschaft",
+	"description": "Der Verein bezweckt, die Permakultur als sozial, ökologisch und ökonomisch nachhaltige Form der Lebensmittelproduktion über die Bewirtschaftung von Selbstversorgungsgärten hinaus in Landwirt- schaftsbetrieben zu fördern und unter Konsumentinnen und Konsumenten bekannt zu machen. ",
+	"webLink": "http://www.permatur.org/permakultur-landwirtschaft",
+	"logo": "https://sandbox.openki.net/zurich/groups/permakultur-landwirtschaft.jpg",
+	'venue': {
+		"loc": {
+			"type": "Point",
+			"coordinates": []
+		}
+	},
+	'tags': [
+		"TransitionZH",
+		"food",
+		"info"
+	]
+},{
+	"name": "Wädichörbli",
+	"description": "Im Wädichörbli wird Bio-Gemüse nach Knospe-Richtlinien angebaut und 1x wöchentlich als erntefrisches Gemüse-Abo an ein Depot in der Nähe geliefert. Unsere Verteilpunkte befinden sich derzeit in dem Gebiet Horgen, Au, Wädenswil, Richterswil, Samstagern bis Wollerau. Das Besondere daran: das frische, saisonal und regional produzierte Bio-Gemüse wird gemeinschaftlich in der Genossenschaft und unter Anleitung von zwei GemüsegärtnerInnen während des ganzen Jahres produziert.",
+	"webLink": "http://waedichoerbli.ch/",
+	"logo": "https://sandbox.openki.net/zurich/groups/waedichoerbli.png",
+	'venue': {
+		"loc": {
+			"type": "Point",
+			"coordinates": [8.6762545, 47.2026327]
+		}
+	},
+	'tags': [
+		"TransitionZH",
+		"food",
+		"coop"
+	]
 },{
 	'name':             '',
 	'claim':            '',
 	'description':      '',
 	'webLink':          '',
 	'logo':             '',
-	'venue':            {
-		'loc':              {
+	'venue': {
+		'loc': {
 			'type':'Point',
-			'coordinates':      []
+			'coordinates': []
 		}
 	},
 	'tags':              ['TransitionZH']
