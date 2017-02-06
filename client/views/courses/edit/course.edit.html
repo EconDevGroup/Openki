@@ -19,12 +19,15 @@
 				{{/if}}
 				<div class="form-group">
 					<label>{{mf 'course.edit.title' 'Title'}}</label>
-					<input class="form-control input-lg"
-						id="editform_name"
-						placeholder="{{mf 'course.title.placeholder' 'What are you interested in?'}}"
-						size="40"
-						type="text"
-						value="{{name}}"/>
+					<div class="input-wrap">
+						<input class="form-control input-lg"
+							id="editform_name"
+							placeholder="{{mf 'course.title.placeholder' 'What are you interested in?'}}"
+							size="40"
+							type="text"
+							value="{{name}}"/>
+						{{> clearInputBtn}}
+					</div>
 				</div>
 				<div class="form-group">
 					<label>{{mf 'course.edit.description' 'Description'}}</label>
